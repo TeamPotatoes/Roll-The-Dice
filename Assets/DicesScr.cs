@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DicesScr : MonoBehaviour {
     private float BarWidth; //ширина фона у текста
@@ -19,12 +20,12 @@ public class DicesScr : MonoBehaviour {
     public Text TxtNext;
     public Text TxtAddDice;
     public Text TxtResult;
-
+    public Text TxtNumbers;
 
 
     //Масив результатов
+    /*
     private int ColumnNum;
-
     private string Res1;
     private string Res2;
     private string Res3;
@@ -35,21 +36,21 @@ public class DicesScr : MonoBehaviour {
     private string Res8;
     private string Res9;
     private string Res10;
-
+    */
+    private string display = "";
+    private List<string> numberofthem = new List<string>(); //создаем лист который будет хранить значения бросков
 
     void Start()
     {
-        Res1 = null;
+        //Res1 = null;
+        //ColumnNum = 0;
         BarWidth = Screen.width / 8;
-
-        ColumnNum = 0;
-
 
     }
      
     void Update()
     {
-
+        /*
         switch (ColumnNum)
         {
             case 1: Res1 = TxtResult.text.ToString(); break;
@@ -64,16 +65,8 @@ public class DicesScr : MonoBehaviour {
             case 10: Res10 = TxtResult.text.ToString(); break;
             default: Res1 = TxtResult.text.ToString(); break;
         }
-        
-        //Нажимаем Q или E - меняем тип кубика, на W включаем второй кубик
-        if (Input.GetKeyDown(KeyCode.W) && twodices == false)
-        { twodices = true; }
-        else if (Input.GetKeyDown(KeyCode.W) && twodices == true)
-        { twodices = false; }
-        if (Input.GetKeyDown(KeyCode.Q))
-        { dicenumber -= 1; }
-        if (Input.GetKeyDown(KeyCode.E))
-        { dicenumber += 1; }
+        */
+        //Ограничители для кнопок переключения       
         if (dicenumber >= maxdicenumber)
         { dicenumber = maxdicenumber; }
         if (dicenumber <= mindicenumber)
@@ -95,29 +88,20 @@ public class DicesScr : MonoBehaviour {
         {
             minnumber = 1; maxnumber = 21; dicename = "20 sides dice";
         }
-
-     
-        //при нажатии пробела - бросается кубик
-   
-        if (Input.GetButtonDown("Jump"))
-        {
-            finalnumber = Random.Range(minnumber, maxnumber);
-            if (twodices == true)
-            { finalnumber2 = Random.Range(minnumber, maxnumber); }
-           else { finalnumber2 = 0; }
-        }
+               
         TxtRoll.text = dicename + " Roll"; //отображаем на кнопке текуший кубик
         if (twodices == false) { TxtResult.text = "" + finalnumber; }
-       
-        else if (twodices == true)
+        else if (twodices)
         { TxtResult.text = "" + finalnumber + "+" + finalnumber2 + "=" + totalnumber; }
-
-
-     
     }
 
     void OnGUI()
     {
+       /* for (int i=0; i < numberofthem.Count; i++)
+        {
+            GUI.Box(new Rect(Screen.width / 1.95f, (Screen.height / (2.65f - numberofthem.Count)), 150, 30), numberofthem[i]);
+        }
+        
         GUI.Box(new Rect(10, 10, BarWidth, 20), Res1);
         GUI.Box(new Rect(10, 30, BarWidth, 20), Res2);
         GUI.Box(new Rect(10, 50, BarWidth, 20), Res3);
@@ -128,32 +112,31 @@ public class DicesScr : MonoBehaviour {
         GUI.Box(new Rect(10, 150, BarWidth, 20), Res8);
         GUI.Box(new Rect(10, 170, BarWidth, 20), Res9);
         GUI.Box(new Rect(10, 190, BarWidth, 20), Res10);
-        // отрисовка текста и цифр
-        /*  GUI.Box(new Rect(10, 10, BarWidth, 20), "Q/E - type, W - number");
-          GUI.Box(new Rect(10, 30, BarWidth, 20), "Press Space to roll the dice");
-          GUI.Box(new Rect(10, 50, BarWidth, 20), dicename);
-          GUI.Box(new Rect(10, 70, BarWidth, 20), "Your number is " + finalnumber);
-          if (twodices == true)
-          {
-              GUI.Box(new Rect(BarWidth + 10, 50, BarWidth / 3, 20), "x 2");
-              GUI.Box(new Rect(10, 90, BarWidth, 20), "Your 2nd number is " + finalnumber2);
-              totalnumber = finalnumber + finalnumber2;
-              GUI.Box(new Rect(10, 110, BarWidth, 20), "In total: " + totalnumber);
-          }
-          else { GUI.Box(new Rect(BarWidth + 10, 50, BarWidth / 3, 20), "x 1"); }*/
-
+    */
     }
     //Функции вызвываемые по клику мышки
     public void ClickRoll()
     {
         finalnumber = Random.Range(minnumber, maxnumber);
-        if (twodices == true)
+        if (twodices)
         { finalnumber2 = Random.Range(minnumber, maxnumber); }
         else { finalnumber2 = 0;}
-        ColumnNum = ColumnNum + 1;
-        if (ColumnNum >= 11) { ColumnNum = 1; }
+        //ColumnNum = ColumnNum + 1;
+        //if (ColumnNum >= 11) { ColumnNum = 1; }   //39 строк....ну это жесть
 
-    }
+        numberofthem.Add(TxtResult.text.ToString()); //при клике добавляем переменную
+        Debug.Log(numberofthem.Count); //переменная отображает сколько бросков сохранено
+       
+            /*foreach (string data in numberofthem)
+            {
+                Debug.Log(data);
+                display = display.ToString() + data.ToString() + "\n";
+                display = numberofthem[data];
+            }
+            TxtNumbers.text = display;
+            */
+        }
+       
     public void ClickAddDice ()
     {
         if (twodices == false)
@@ -161,7 +144,7 @@ public class DicesScr : MonoBehaviour {
             twodices = true;
             TxtAddDice.text = "Delete dice";
         }
-        else if (twodices == true)
+        else if (twodices)
         {
             twodices = false;
             TxtAddDice.text = "Add dice";
