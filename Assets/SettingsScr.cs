@@ -3,14 +3,14 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class SettingsScr : MonoBehaviour {
+
+
     
-	void Start () {
-	
-	}
-	
-	
+	void Start ()
+    {
+
+    }
 	void Update () {
-	
 	}
     public void ClickBack()
     {
