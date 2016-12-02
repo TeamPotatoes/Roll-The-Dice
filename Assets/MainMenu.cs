@@ -23,6 +23,10 @@ public class MainMenu : MonoBehaviour {
     {
         Application.LoadLevel("SettingsScene");
     }
+    public void PasswordScene()
+    {
+        Application.LoadLevel("PasswordScen");
+    }
     public void ExitApp ()
     {
         Application.Quit();
