@@ -11,18 +11,24 @@ public class TimerScr : MonoBehaviour {
     private int MaxMinuts = 10;
     private int MaxHours = 10;
     public bool TimerCount;
+    private GameObject TimerClock;
+    private GameObject chessClock;
+    private GameObject SandClock;
     public Text HoursTxt;
     public Text MinutesTxt;
     public Text SecondsTxt;
     public Text Button;
+    
 
     // Use this for initialization  
     void Start ()
     {
         Seconds = 0;
         TimerCount = false;
+        TimerClock = GameObject.Find("TimerClock");
+        SandClock = GameObject.Find("SandClock");
+        chessClock = GameObject.Find("ChessClock");
 
-       
     }
 
    public void ClickTimer()
@@ -65,6 +71,13 @@ public class TimerScr : MonoBehaviour {
         MinutesTxt.text = "" + Minutes;
         SecondsTxt.text = "" + Seconds;
     }
+
+
+    public void SwitchToChess(){TimerClock.SetActive(false);SandClock.SetActive(false);chessClock.SetActive(true);}
+    public void SwitchToSand() { TimerClock.SetActive(false); SandClock.SetActive(true); chessClock.SetActive(false); }
+    public void SwitchToTimer() { TimerClock.SetActive(true); SandClock.SetActive(false); chessClock.SetActive(false); }
+
+
 
     // Update is called once per frame
 

@@ -24,7 +24,7 @@ public class DicesScr : MonoBehaviour {
 
 
     //Масив результатов
-    /*
+    
     private int ColumnNum;
     private string Res1;
     private string Res2;
@@ -36,21 +36,21 @@ public class DicesScr : MonoBehaviour {
     private string Res8;
     private string Res9;
     private string Res10;
-    */
+    
     private string display = "";
     private List<string> numberofthem = new List<string>(); //создаем лист который будет хранить значения бросков
 
     void Start()
     {
-        //Res1 = null;
-        //ColumnNum = 0;
+        Res1 = null;
+        ColumnNum = 0;
         BarWidth = Screen.width / 8;
 
     }
      
     void Update()
     {
-        /*
+        
         switch (ColumnNum)
         {
             case 1: Res1 = TxtResult.text.ToString(); break;
@@ -65,7 +65,7 @@ public class DicesScr : MonoBehaviour {
             case 10: Res10 = TxtResult.text.ToString(); break;
             default: Res1 = TxtResult.text.ToString(); break;
         }
-        */
+        
         //Ограничители для кнопок переключения       
         if (dicenumber >= maxdicenumber)
         { dicenumber = maxdicenumber; }
@@ -97,11 +97,11 @@ public class DicesScr : MonoBehaviour {
 
     void OnGUI()
     {
-       /* for (int i=0; i < numberofthem.Count; i++)
+       /*for (int i=0; i < numberofthem.Count; i++)
         {
             GUI.Box(new Rect(Screen.width / 1.95f, (Screen.height / (2.65f - numberofthem.Count)), 150, 30), numberofthem[i]);
         }
-        
+        */
         GUI.Box(new Rect(10, 10, BarWidth, 20), Res1);
         GUI.Box(new Rect(10, 30, BarWidth, 20), Res2);
         GUI.Box(new Rect(10, 50, BarWidth, 20), Res3);
@@ -112,7 +112,7 @@ public class DicesScr : MonoBehaviour {
         GUI.Box(new Rect(10, 150, BarWidth, 20), Res8);
         GUI.Box(new Rect(10, 170, BarWidth, 20), Res9);
         GUI.Box(new Rect(10, 190, BarWidth, 20), Res10);
-    */
+    
     }
     //Функции вызвываемые по клику мышки
     public void ClickRoll()
@@ -121,8 +121,8 @@ public class DicesScr : MonoBehaviour {
         if (twodices)
         { finalnumber2 = Random.Range(minnumber, maxnumber); }
         else { finalnumber2 = 0;}
-        //ColumnNum = ColumnNum + 1;
-        //if (ColumnNum >= 11) { ColumnNum = 1; }   //39 строк....ну это жесть
+        ColumnNum = ColumnNum + 1;
+        if (ColumnNum >= 11) { ColumnNum = 1; }   //39 строк....ну это жесть
 
         numberofthem.Add(TxtResult.text.ToString()); //при клике добавляем переменную
         Debug.Log(numberofthem.Count); //переменная отображает сколько бросков сохранено
