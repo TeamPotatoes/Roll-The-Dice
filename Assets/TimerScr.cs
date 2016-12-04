@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimerScr : MonoBehaviour {
 
@@ -83,6 +84,6 @@ public class TimerScr : MonoBehaviour {
 
     public void ClickBack()
     {
-        Application.LoadLevel("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class TwisterScr : MonoBehaviour {
     private int finalnumber = 0; // результат вращения цвет    
@@ -11,7 +12,7 @@ public class TwisterScr : MonoBehaviour {
 
     void Update()
     {      
-        TxtTurn.text = "Turn wheel"; 
+        
     }
         
     //Функции вызвываемые по клику мышки
@@ -58,6 +59,6 @@ public class TwisterScr : MonoBehaviour {
     }
     public void ClickBack()
     {
-        Application.LoadLevel("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }

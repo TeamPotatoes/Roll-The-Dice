@@ -1,31 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
 	public void DiceScene ()
     {
-        Application.LoadLevel("DiceScene");
+        SceneManager.LoadScene("DiceScene");
     }
     public void CoinScene()
     {
-        Application.LoadLevel("CoinScene");
+        SceneManager.LoadScene("CoinScene");
     }
     public void TimerScene()
     {
-        Application.LoadLevel("TimerScene");
+        SceneManager.LoadScene("TimerScene");
     }
     public void TwisterScene()
     {
-        Application.LoadLevel("TwisterScene");
+        SceneManager.LoadScene("TwisterScene");
     }
     public void SettingsScene()
     {
-        Application.LoadLevel("SettingsScene");
+        SceneManager.LoadScene("SettingsScene");
     }
     public void PasswordScene()
     {
-        Application.LoadLevel("PasswordScen");
+        SceneManager.LoadScene("PasswordScen");
     }
     public void ExitApp ()
     {

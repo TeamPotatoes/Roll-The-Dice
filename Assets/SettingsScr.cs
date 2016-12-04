@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class SettingsScr : MonoBehaviour {
 
@@ -14,6 +15,6 @@ public class SettingsScr : MonoBehaviour {
 	}
     public void ClickBack()
     {
-        Application.LoadLevel("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }
