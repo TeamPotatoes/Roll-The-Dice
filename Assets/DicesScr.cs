@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class DicesScr : MonoBehaviour {
     private float BarWidth; //ширина фона у текста
@@ -13,59 +14,25 @@ public class DicesScr : MonoBehaviour {
     private string dicename = "6 sides dice"; // название кубика
     private int dicenumber = 1; // порядковый номер кубика в списке
     private int mindicenumber = 1; //переменная чтобы порядковый номер не был меньше ее
-    private int maxdicenumber = 4; // максимальное количество типов кубиков
+    private int maxdicenumber = 5; // максимальное количество типов кубиков
     private bool twodices = false; //определяем сколько кубиков бросать
-    public Text TxtRoll;
+    public Text TxtRoll; //текстовые поля, потом будут нужны при выборе языка
     public Text TxtPrevious;
     public Text TxtNext;
     public Text TxtAddDice;
     public Text TxtResult;
     public Text TxtNumbers;
-
-
-    //Масив результатов
     
-    private int ColumnNum;
-    private string Res1;
-    private string Res2;
-    private string Res3;
-    private string Res4;
-    private string Res5;
-    private string Res6;
-    private string Res7;
-    private string Res8;
-    private string Res9;
-    private string Res10;
-    
-    private string display = "";
+    //Лист результатов броска
     private List<string> numberofthem = new List<string>(); //создаем лист который будет хранить значения бросков
 
     void Start()
     {
-        Res1 = null;
-        ColumnNum = 0;
-        BarWidth = Screen.width / 8;
-
+       BarWidth = Screen.width / 8;
     }
      
     void Update()
     {
-        
-        switch (ColumnNum)
-        {
-            case 1: Res1 = TxtResult.text.ToString(); break;
-            case 2: Res2 = TxtResult.text.ToString(); break;
-            case 3: Res3 = TxtResult.text.ToString(); break;
-            case 4: Res4 = TxtResult.text.ToString(); break;
-            case 5: Res5 = TxtResult.text.ToString(); break;
-            case 6: Res6 = TxtResult.text.ToString(); break;
-            case 7: Res7 = TxtResult.text.ToString(); break;
-            case 8: Res8 = TxtResult.text.ToString(); break;
-            case 9: Res9 = TxtResult.text.ToString(); break;
-            case 10: Res10 = TxtResult.text.ToString(); break;
-            default: Res1 = TxtResult.text.ToString(); break;
-        }
-        
         //Ограничители для кнопок переключения       
         if (dicenumber >= maxdicenumber)
         { dicenumber = maxdicenumber; }
@@ -73,21 +40,15 @@ public class DicesScr : MonoBehaviour {
         { dicenumber = mindicenumber; }
         //список кубиков
         if (dicenumber == 1)
-        {
-            minnumber = 1; maxnumber = 7; dicename = "6 sides dice";
-        }
+        { minnumber = 1; maxnumber = 5; dicename = "4 sides dice"; }
         if (dicenumber == 2)
-        {
-            minnumber = 1; maxnumber = 11; dicename = "10 sides dice";
-        }
+        { minnumber = 1; maxnumber = 7; dicename = "6 sides dice"; }
         if (dicenumber == 3)
-        {
-            minnumber = 1; maxnumber = 13; dicename = "12 sides dice";
-        }
+        { minnumber = 1; maxnumber = 11; dicename = "10 sides dice"; }
         if (dicenumber == 4)
-        {
-            minnumber = 1; maxnumber = 21; dicename = "20 sides dice";
-        }
+        { minnumber = 1; maxnumber = 13; dicename = "12 sides dice"; }
+        if (dicenumber == 5)
+        { minnumber = 1; maxnumber = 21; dicename = "20 sides dice"; }
                
         TxtRoll.text = dicename + " Roll"; //отображаем на кнопке текуший кубик
         if (twodices == false) { TxtResult.text = "" + finalnumber; }
@@ -96,23 +57,36 @@ public class DicesScr : MonoBehaviour {
     }
 
     void OnGUI()
-    {
-       /*for (int i=0; i < numberofthem.Count; i++)
+    {        
+            for (int i = 1; i < numberofthem.Count && i < 10; i++)
+            {                
+            if (numberofthem.Count > 10)
+            {
+                int n = numberofthem.Count - i; // ВОТ ЭТО СТРОКУ НАДО ПОПРАВИТЬ
+                GUI.Box(new Rect(160, 10 + i * 20, BarWidth, 20), numberofthem[n]);
+            } else { GUI.Box(new Rect(160, 10 + i * 20, BarWidth, 20), numberofthem[i]);};
+            }
+        /* ТОПОРНЫЙ МЕТОД, НО РАБОТАЕТ
+        int n = 0;
+        if (numberofthem.Count <= 10)
         {
-            GUI.Box(new Rect(Screen.width / 1.95f, (Screen.height / (2.65f - numberofthem.Count)), 150, 30), numberofthem[i]);
+            n = 11;
         }
-        */
-        GUI.Box(new Rect(10, 10, BarWidth, 20), Res1);
-        GUI.Box(new Rect(10, 30, BarWidth, 20), Res2);
-        GUI.Box(new Rect(10, 50, BarWidth, 20), Res3);
-        GUI.Box(new Rect(10, 70, BarWidth, 20), Res4);
-        GUI.Box(new Rect(10, 90, BarWidth, 20), Res5);
-        GUI.Box(new Rect(10, 110, BarWidth, 20), Res6);
-        GUI.Box(new Rect(10, 130, BarWidth, 20), Res7);
-        GUI.Box(new Rect(10, 150, BarWidth, 20), Res8);
-        GUI.Box(new Rect(10, 170, BarWidth, 20), Res9);
-        GUI.Box(new Rect(10, 190, BarWidth, 20), Res10);
-    
+        else if (numberofthem.Count > 10)
+        {
+            n = numberofthem.Count;
+        }        
+        GUI.Box(new Rect(40, 10, BarWidth, 20), numberofthem[n - 10]);
+        GUI.Box(new Rect(40, 30, BarWidth, 20), numberofthem[n - 9]);
+        GUI.Box(new Rect(40, 50, BarWidth, 20), numberofthem[n - 8]);
+        GUI.Box(new Rect(40, 70, BarWidth, 20), numberofthem[n - 7]);
+        GUI.Box(new Rect(40, 90, BarWidth, 20), numberofthem[n - 6]);
+        GUI.Box(new Rect(40, 110, BarWidth, 20), numberofthem[n - 5]);
+        GUI.Box(new Rect(40, 130, BarWidth, 20), numberofthem[n - 4]);
+        GUI.Box(new Rect(40, 150, BarWidth, 20), numberofthem[n - 3]);
+        GUI.Box(new Rect(40, 170, BarWidth, 20), numberofthem[n - 2]);
+        GUI.Box(new Rect(40, 190, BarWidth, 20), numberofthem[n - 1]);
+    */
     }
     //Функции вызвываемые по клику мышки
     public void ClickRoll()
@@ -121,20 +95,9 @@ public class DicesScr : MonoBehaviour {
         if (twodices)
         { finalnumber2 = Random.Range(minnumber, maxnumber); }
         else { finalnumber2 = 0;}
-        ColumnNum = ColumnNum + 1;
-        if (ColumnNum >= 11) { ColumnNum = 1; }   //39 строк....ну это жесть
-
-        numberofthem.Add(TxtResult.text.ToString()); //при клике добавляем переменную
-        Debug.Log(numberofthem.Count); //переменная отображает сколько бросков сохранено
-       
-            /*foreach (string data in numberofthem)
-            {
-                Debug.Log(data);
-                display = display.ToString() + data.ToString() + "\n";
-                display = numberofthem[data];
-            }
-            TxtNumbers.text = display;
-            */
+        totalnumber = finalnumber + finalnumber2;
+      
+        numberofthem.Add(TxtResult.text.ToString()); //при клике добавляем полученый результат в лист бросков
         }
        
     public void ClickAddDice ()
@@ -160,8 +123,6 @@ public class DicesScr : MonoBehaviour {
     }
     public void ClickBack()
     {
-        Application.LoadLevel("MainMenu");
-    }
-  
-
+        SceneManager.LoadScene("MainMenu");
+    }  
   }
