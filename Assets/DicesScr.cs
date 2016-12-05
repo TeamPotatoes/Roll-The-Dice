@@ -66,27 +66,7 @@ public class DicesScr : MonoBehaviour {
                 GUI.Box(new Rect(160, 10 + i * 20, BarWidth, 20), numberofthem[n]);
             } else { GUI.Box(new Rect(160, 10 + i * 20, BarWidth, 20), numberofthem[i]);};
             }
-        /* ТОПОРНЫЙ МЕТОД, НО РАБОТАЕТ
-        int n = 0;
-        if (numberofthem.Count <= 10)
-        {
-            n = 11;
-        }
-        else if (numberofthem.Count > 10)
-        {
-            n = numberofthem.Count;
-        }        
-        GUI.Box(new Rect(40, 10, BarWidth, 20), numberofthem[n - 10]);
-        GUI.Box(new Rect(40, 30, BarWidth, 20), numberofthem[n - 9]);
-        GUI.Box(new Rect(40, 50, BarWidth, 20), numberofthem[n - 8]);
-        GUI.Box(new Rect(40, 70, BarWidth, 20), numberofthem[n - 7]);
-        GUI.Box(new Rect(40, 90, BarWidth, 20), numberofthem[n - 6]);
-        GUI.Box(new Rect(40, 110, BarWidth, 20), numberofthem[n - 5]);
-        GUI.Box(new Rect(40, 130, BarWidth, 20), numberofthem[n - 4]);
-        GUI.Box(new Rect(40, 150, BarWidth, 20), numberofthem[n - 3]);
-        GUI.Box(new Rect(40, 170, BarWidth, 20), numberofthem[n - 2]);
-        GUI.Box(new Rect(40, 190, BarWidth, 20), numberofthem[n - 1]);
-    */
+       
     }
     //Функции вызвываемые по клику мышки
     public void ClickRoll()
