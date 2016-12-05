@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PasswordScr : MonoBehaviour {
   
@@ -32,6 +33,6 @@ public class PasswordScr : MonoBehaviour {
 
     public void ClickBack()
     {
-        Application.LoadLevel("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }

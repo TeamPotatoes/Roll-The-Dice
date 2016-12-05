@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CoinScr : MonoBehaviour {
     private int finalnumber = 0; // результат броска    
@@ -27,6 +28,6 @@ public class CoinScr : MonoBehaviour {
     }
     public void ClickBack()
     {
-        Application.LoadLevel("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }
