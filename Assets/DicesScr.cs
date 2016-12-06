@@ -22,38 +22,47 @@ public class DicesScr : MonoBehaviour {
     public Text TxtAddDice;
     public Text TxtResult;
     public Text TxtNumbers;
-    
+    private string SysLanguage;
+
+
+
+   
+
     //Лист результатов броска
     private List<string> numberofthem = new List<string>(); //создаем лист который будет хранить значения бросков
 
     void Start()
     {
-       BarWidth = Screen.width / 8;
+        SysLanguage = PlayerPrefs.GetString("Language");
+        BarWidth = Screen.width / 8;
     }
      
     void Update()
     {
-        //Ограничители для кнопок переключения       
-        if (dicenumber >= maxdicenumber)
-        { dicenumber = maxdicenumber; }
-        if (dicenumber <= mindicenumber)
-        { dicenumber = mindicenumber; }
-        //список кубиков
-        if (dicenumber == 1)
-        { minnumber = 1; maxnumber = 5; dicename = "4 sides dice"; }
-        if (dicenumber == 2)
-        { minnumber = 1; maxnumber = 7; dicename = "6 sides dice"; }
-        if (dicenumber == 3)
-        { minnumber = 1; maxnumber = 11; dicename = "10 sides dice"; }
-        if (dicenumber == 4)
-        { minnumber = 1; maxnumber = 13; dicename = "12 sides dice"; }
-        if (dicenumber == 5)
-        { minnumber = 1; maxnumber = 21; dicename = "20 sides dice"; }
-               
-        TxtRoll.text = dicename + " Roll"; //отображаем на кнопке текуший кубик
-        if (twodices == false) { TxtResult.text = "" + finalnumber; }
-        else if (twodices)
-        { TxtResult.text = "" + finalnumber + "+" + finalnumber2 + "=" + totalnumber; }
+        if (SysLanguage == "Eng")
+        {
+            //Ограничители для кнопок переключения       
+            if (dicenumber >= maxdicenumber)
+            { dicenumber = maxdicenumber; }
+            if (dicenumber <= mindicenumber)
+            { dicenumber = mindicenumber; }
+            //список кубиков
+            if (dicenumber == 1)
+            { minnumber = 1; maxnumber = 5; dicename = "4 sides dice"; }
+            if (dicenumber == 2)
+            { minnumber = 1; maxnumber = 7; dicename = "6 sides dice"; }
+            if (dicenumber == 3)
+            { minnumber = 1; maxnumber = 11; dicename = "10 sides dice"; }
+            if (dicenumber == 4)
+            { minnumber = 1; maxnumber = 13; dicename = "12 sides dice"; }
+            if (dicenumber == 5)
+            { minnumber = 1; maxnumber = 21; dicename = "20 sides dice"; }
+
+            TxtRoll.text = dicename + " Roll"; //отображаем на кнопке текуший кубик
+            if (twodices == false) { TxtResult.text = "" + finalnumber; }
+            else if (twodices)
+            { TxtResult.text = "" + finalnumber + "+" + finalnumber2 + "=" + totalnumber; }
+        }
     }
 
     void OnGUI()
