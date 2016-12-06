@@ -1,0 +1,2 @@
+txtback = "Back";
+txtsettings ="Settings";
