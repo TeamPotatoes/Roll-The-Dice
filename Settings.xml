@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<MainMenu>
+<Settings>
+  <Rus>
   <Dice>"кубики"</Dice>
 <Coin>"Монетка"</Coin>
 <Sandglass>"Песочные Часы"</Sandglass>
 <Twister>"Твистер"</Twister>
-  </MainMenu>
+    </Rus>
+  </Settings>

@@ -1,0 +1,2 @@
+txtback ="Назад"
+txtsettings ="Настройки"
