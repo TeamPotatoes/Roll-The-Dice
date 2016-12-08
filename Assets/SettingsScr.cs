@@ -1,27 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System.IO;
-using UnityEngine.Serialization;
-
-
-[SerializeField]
-public class AddRU : MonoBehaviour
-{
-    private string json;
-    private string PathJson;
-    private string txtback;
-    private string txtchangeeng;
-    private string txtchangeerus;
-    AddRU MyJson = new AddRU();
-    void Start()
-    {
-        PathJson = Directory.GetCurrentDirectory() + @"\Assets\Lang\RU.json";
-        // string json = JsonUtility.FromJson<RU>(MyJson);
-    }
-}
-
+using System.Xml;
+using System.Xml.Serialization;
 
 
 public class SettingsScr : MonoBehaviour {
@@ -29,37 +13,27 @@ public class SettingsScr : MonoBehaviour {
     public Text EngButton;
     public Text BackButton;
     private string SysLanguage;
-    private string PathEng;
-    private string PathJson;
-    //  public TextAsset RU;
-    // public TextAsset ENG;
-   // public string RU;
+    private string PathLang;
 
 
+    public XmlDocument XmlDOc;
+    public TextAsset Lang;
+    private List<string> Buttons;
+    private string filename;
 
+
+   
+   
     void Start()
-    {        
-  
-       
-        Debug.Log(PathJson);
-        PathJson = Directory.GetCurrentDirectory() + @"\Assets\Lang\RU.json";
+    {
 
-        PathEng = Directory.GetCurrentDirectory() + @"\Assets\Lang\ENG-eng.txt" ;
+    //    loadXMLFromAssest();
 
 
-        string ENG = File.ReadAllText(PathEng);
 
-         using (StreamReader e = File.OpenText(PathEng))
-         {
-             string s = "";
-             while ((s = e.ReadLine()) != null)
-             {
-                 Debug.Log(s);
-               
-            }
-         }
 
-         SysLanguage = PlayerPrefs.GetString("Language");
+          
+        SysLanguage = PlayerPrefs.GetString("Language");
          if (SysLanguage == "Eng")
          {
             
@@ -77,7 +51,9 @@ public class SettingsScr : MonoBehaviour {
          }
 
     }
-    
+
+
+
     public void ChangeToEnglish()
     {
         PlayerPrefs.SetString ("Language", "Eng");

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Lang>
+
+   
+  <back lang ="ru">Назад</back> 
+  <back lang ="en">Back</back>
+  <setting lang ="ru">Настройки</setting> 
+  <setting lang ="en">Settings</setting>
+  <changetoeng lang ="ru">Сменить на Англ</changetoeng>
+  <changetoeng lang ="en">Changre to Eng</changetoeng>
+  <changetorus lang ="ru">Сменить на рус</changetorus>
+  <changetorus lang ="en">Change to Rus</changetorus>
+   
+ 
+</Lang>

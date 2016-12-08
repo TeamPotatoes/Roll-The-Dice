@@ -1,2 +1,0 @@
-txtback = "Back";
-txtsettings ="Settings";

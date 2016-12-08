@@ -26,7 +26,6 @@ public class DicesScr : MonoBehaviour {
 
 
 
-   
 
     //Лист результатов броска
     private List<string> numberofthem = new List<string>(); //создаем лист который будет хранить значения бросков
@@ -39,8 +38,7 @@ public class DicesScr : MonoBehaviour {
      
     void Update()
     {
-        if (SysLanguage == "Eng")
-        {
+       
             //Ограничители для кнопок переключения       
             if (dicenumber >= maxdicenumber)
             { dicenumber = maxdicenumber; }
@@ -62,7 +60,7 @@ public class DicesScr : MonoBehaviour {
             if (twodices == false) { TxtResult.text = "" + finalnumber; }
             else if (twodices)
             { TxtResult.text = "" + finalnumber + "+" + finalnumber2 + "=" + totalnumber; }
-        }
+        
     }
 
     void OnGUI()
