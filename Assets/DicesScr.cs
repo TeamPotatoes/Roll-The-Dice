@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -32,15 +31,13 @@ public class DicesScr : MonoBehaviour {
     private List<string> numberofthem = new List<string>(); //создаем лист который будет хранить значения бросков
 
     void Start()
-    {
-        SysLanguage = PlayerPrefs.GetString("Language");
+    {        
         BarWidth = Screen.width / 8;
     }
      
     void Update()
     {
-        if (SysLanguage == "Eng")
-        {
+        
             //Ограничители для кнопок переключения       
             if (dicenumber >= maxdicenumber)
             { dicenumber = maxdicenumber; }
@@ -62,7 +59,7 @@ public class DicesScr : MonoBehaviour {
             if (twodices == false) { TxtResult.text = "" + finalnumber; }
             else if (twodices)
             { TxtResult.text = "" + finalnumber + "+" + finalnumber2 + "=" + totalnumber; }
-        }
+        
     }
 
     void OnGUI()
