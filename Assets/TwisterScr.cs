@@ -10,10 +10,6 @@ public class TwisterScr : MonoBehaviour {
     public Text TxtResult;
     public Text TxtResult2;
 
-    void Update()
-    {      
-        
-    }
         
     //Функции вызвываемые по клику мышки
     public void ClickFlip()
