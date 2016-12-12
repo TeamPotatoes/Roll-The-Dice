@@ -113,6 +113,41 @@ public class DicesScr : MonoBehaviour {
         } else {showlist = false;}
         
     }
+    public void ClickD4()
+    {
+        dicenumber = 1;
+        CheckName();
+    }
+    public void ClickD6()
+    {
+        dicenumber = 2;
+        CheckName();
+    }
+    public void ClickD8()
+    {
+        dicenumber = 3;
+        CheckName();
+    }
+    public void ClickD10()
+    {
+        dicenumber = 4;
+        CheckName();
+    }
+    public void ClickD12()
+    {
+        dicenumber = 5;
+        CheckName();
+    }
+    public void ClickD20()
+    {
+        dicenumber = 6;
+        CheckName();
+    }
+    public void ClickD30()
+    {
+        dicenumber = 7;
+        CheckName();
+    }
     public void ClickBack()
     {
         SceneManager.LoadScene("MainMenu");
