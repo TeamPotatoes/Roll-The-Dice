@@ -17,10 +17,11 @@ public class TimerScr : MonoBehaviour {
     public Text HoursTxt;
     public Text MinutesTxt;
     public Text SecondsTxt;
-    public Text Button;
-    public Text ResetButton;
-    public Text TimerButton;
-    public Text BackButton;
+    public Text TxtStart;
+    public Text TxtReset;
+    public Text TxtTimer;
+    public Text TxtBack;
+    public Text TxtSandGlass;
 
 
 
@@ -29,9 +30,11 @@ public class TimerScr : MonoBehaviour {
     void Start ()
     {
 
-        BackButton.text = LangManager.instance.GetWord("Back");
-        TimerButton.text = LangManager.instance.GetWord("TimerButton");
-        ResetButton.text = LangManager.instance.GetWord("ResetButton");
+        TxtBack.text = LangManager.instance.GetWord("Back");
+        TxtTimer.text = LangManager.instance.GetWord("Timer");
+        TxtStart.text = LangManager.instance.GetWord("Start");
+        TxtReset.text = LangManager.instance.GetWord("Reset");
+        TxtSandGlass.text = LangManager.instance.GetWord("SandGlass");
 
         Seconds = 0;
         TimerCount = false;
@@ -43,8 +46,8 @@ public class TimerScr : MonoBehaviour {
    public void ClickTimer()
     {
 
-       if(TimerCount == false) { TimerCount = true; StartCoroutine(Second()); Button.text = LangManager.instance.GetWord("ButtonPause"); }
-       else if(TimerCount == true) { TimerCount = false;StopCoroutine(Second()); Button.text = LangManager.instance.GetWord("ButtonStart"); }
+       if(TimerCount == false) { TimerCount = true; StartCoroutine(Second()); TxtStart.text = LangManager.instance.GetWord("Pause"); }
+       else if(TimerCount == true) { TimerCount = false;StopCoroutine(Second()); TxtStart.text = LangManager.instance.GetWord("Start"); }
     }
 
   public  IEnumerator Second()

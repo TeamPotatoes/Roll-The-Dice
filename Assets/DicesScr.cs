@@ -9,50 +9,24 @@ public class DicesScr : MonoBehaviour {
     private int totalnumber = 0; //результат сложения броска двух кубиков
     private int minnumber = 1; // минимальное значение на кубике
     private int maxnumber = 7; // максимальнеое значение на кубике
-    private int dicenumber = 2; // порядковый номер кубика в списке
-    private int mindicenumber = 1; //переменная чтобы порядковый номер не был меньше ее
-    private int maxdicenumber = 7; // максимальное количество типов кубиков
     private bool twodices = false; //определяем сколько кубиков бросать
     private bool showlist = false; //выводит полный список бросков
-    private string dicename; // название кубика
     public Text TxtRoll; //текстовые поля, потом будут нужны при выборе языка
-    public Text TxtPrevious;
-    public Text TxtNext;
     public Text TxtAddDice;
     public Text TxtResult;
-    public Text TxtNumbers;
-    public Text BackButton;
-    public Text LastRoll;
+    public Text TxtBack;
+    public Text TxtLastRoll;
+    public Text TxtChooseDice;
     private List<string> numberofthem = new List<string>(); //создаем лист который будет хранить значения бросков
        
     void Start()
     {
-        TxtRoll.text = LangManager.instance.GetWord("Roll");
-        TxtPrevious.text = LangManager.instance.GetWord("Previous");
-        TxtNext.text = LangManager.instance.GetWord("Next");
+        TxtRoll.text = "D6 " + LangManager.instance.GetWord("Roll");
         TxtAddDice.text = LangManager.instance.GetWord("AddDice");
-        BackButton.text = LangManager.instance.GetWord("Back");
-        LastRoll.text = LangManager.instance.GetWord("LastRoll");
-
-    }
-    void CheckName() //исполняем все что внутри только если нажата кнопка определенная
-    {
-        //список кубиков
-        if (dicenumber == 1)
-        { minnumber = 1; maxnumber = 5; dicename = "d4 dice"; }
-        if (dicenumber == 2)
-        { minnumber = 1; maxnumber = 7; dicename = "d6 dice"; }
-        if (dicenumber == 3)
-        { minnumber = 1; maxnumber = 9; dicename = "d8 dice"; }
-        if (dicenumber == 4)
-        { minnumber = 1; maxnumber = 11; dicename = "d10 dice"; }
-        if (dicenumber == 5)
-        { minnumber = 1; maxnumber = 13; dicename = "d12 dice"; }
-        if (dicenumber == 6)
-        { minnumber = 1; maxnumber = 21; dicename = "d20 dice"; }
-        if (dicenumber == 7)
-        { minnumber = 1; maxnumber = 31; dicename = "d30 dice"; }
-        TxtRoll.text = dicename + " Roll"; //отображаем на кнопке текуший кубик
+        TxtResult.text = LangManager.instance.GetWord("Result");
+        TxtBack.text = LangManager.instance.GetWord("Back");
+        TxtLastRoll.text = LangManager.instance.GetWord("LastRoll");
+        TxtChooseDice.text = LangManager.instance.GetWord("ChooseDice");
     }
 
     void OnGUI()
@@ -62,14 +36,14 @@ public class DicesScr : MonoBehaviour {
             {   
             if (numberofthem.Count > 10)
             {         
-                GUI.Box(new Rect(900, 500 + i * 20, 260, 20), numberofthem.Count - i  + " " + numberofthem[numberofthem.Count - i]);
-            } else { GUI.Box(new Rect(900, 700 - i * 20, 260, 20),  i  +  " " + numberofthem[i]);};
+                GUI.Box(new Rect(900, 500 + i * 20, 260, 20), numberofthem.Count - i  + ". " + numberofthem[numberofthem.Count - i]);
+            } else { GUI.Box(new Rect(900, 700 - i * 20, 260, 20),  i  +  ". " + numberofthem[i]);};
             }     
             if (showlist)
             {
                 for (int i = 1; i < numberofthem.Count; i++)
                 {
-                    GUI.Box(new Rect(900, 700 - i * 20, 260, 20), i + " " + numberofthem[i]);
+                    GUI.Box(new Rect(900, 700 - i * 20, 260, 20), i + ". " + numberofthem[i]);
                 }
             }   else { return; }
     }
@@ -101,22 +75,7 @@ public class DicesScr : MonoBehaviour {
             twodices = false;
             TxtAddDice.text = "Add dice";
         }
-    }
-    public void ClickPreviousDice()
-    {
-        dicenumber -= 1;
-        //Ограничители для кнопок переключения   
-        if (dicenumber <= mindicenumber)
-        { dicenumber = mindicenumber; }
-        CheckName();
-    }
-    public void ClickNextDice()
-    {
-        dicenumber += 1;
-        if (dicenumber >= maxdicenumber)
-        { dicenumber = maxdicenumber; }
-        CheckName();
-    }
+    }    
     public void ClickShowList()
     {
         if (!showlist)
@@ -127,38 +86,38 @@ public class DicesScr : MonoBehaviour {
     }
     public void ClickD4()
     {
-        dicenumber = 1;
-        CheckName();
+        maxnumber = 5; 
+        TxtRoll.text = "D4 " + LangManager.instance.GetWord("Roll");
     }
     public void ClickD6()
     {
-        dicenumber = 2;
-        CheckName();
+        maxnumber = 7; 
+        TxtRoll.text = "D6 " + LangManager.instance.GetWord("Roll");
     }
     public void ClickD8()
     {
-        dicenumber = 3;
-        CheckName();
+        maxnumber = 9; 
+        TxtRoll.text = "D8 " + LangManager.instance.GetWord("Roll");
     }
     public void ClickD10()
     {
-        dicenumber = 4;
-        CheckName();
+        maxnumber = 11; 
+        TxtRoll.text = "D10 " + LangManager.instance.GetWord("Roll");
     }
     public void ClickD12()
     {
-        dicenumber = 5;
-        CheckName();
+        maxnumber = 13; 
+        TxtRoll.text = "D12 " + LangManager.instance.GetWord("Roll");
     }
     public void ClickD20()
     {
-        dicenumber = 6;
-        CheckName();
+        maxnumber = 21;
+        TxtRoll.text = "D20 " + LangManager.instance.GetWord("Roll");
     }
     public void ClickD30()
     {
-        dicenumber = 7;
-        CheckName();
+        maxnumber = 31; 
+        TxtRoll.text = "D30 " + LangManager.instance.GetWord("Roll");
     }
     public void ClickBack()
     {

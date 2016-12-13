@@ -13,19 +13,7 @@ public class LangManager : MonoBehaviour {
     public string[] tags;
     public TextAsset languageFile;
     private string lang;
-    private string Lang
-    {
-        get
-        {
-            return lang;
-        }
-
-        set
-        {
-            PlayerPrefs.SetString("SysLanguage", value);
-            lang = value;
-        }
-    }
+    private string Lang {get{return lang;}set{PlayerPrefs.SetString("SysLanguage", value); lang = value;}}
 
     public string GetLang()
     {
@@ -44,8 +32,6 @@ public class LangManager : MonoBehaviour {
     
     void Awake()
     {
-       
-        Debug.Log("Fuck DIs shiiiit");
         instance = this;
     }
 
