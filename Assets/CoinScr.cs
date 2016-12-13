@@ -7,10 +7,12 @@ public class CoinScr : MonoBehaviour {
     private int finalnumber = 0; // результат броска    
     public Text TxtFlip;
     public Text TxtResult;
+    public Text BackButton;
 
-    void Update()
+    void Start()
     {      
-        TxtFlip.text = "Flip Coin Here"; 
+        TxtFlip.text = LangManager.instance.GetWord("FlipCoin");
+        BackButton.text = LangManager.instance.GetWord("Back");
     }
         
     //Функции вызвываемые по клику мышки
@@ -19,11 +21,11 @@ public class CoinScr : MonoBehaviour {
         finalnumber = Random.Range(1, 3);
         if (finalnumber == 1)
         {
-            TxtResult.text = "Heads";
+            TxtResult.text = LangManager.instance.GetWord("TxtResultHeads");
         }
         if (finalnumber == 2)
         {
-            TxtResult.text = "Tails";
+            TxtResult.text = LangManager.instance.GetWord("TxtResultTails");
         }
     }
     public void ClickBack()

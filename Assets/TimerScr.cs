@@ -9,43 +9,48 @@ public class TimerScr : MonoBehaviour {
     private int Minutes=0;
     private int Hours=0;
     private float MaxSeconds = 61;
-    private int MaxMinuts = 10;
-    private int MaxHours = 10;
+    private int MaxMinutes = 61;
+    private int MaxHours = 25;
     public bool TimerCount;
     private GameObject TimerClock;
-    private GameObject chessClock;
     private GameObject SandClock;
     public Text HoursTxt;
     public Text MinutesTxt;
     public Text SecondsTxt;
     public Text Button;
-    
+    public Text ResetButton;
+    public Text TimerButton;
+    public Text BackButton;
+
+
+
 
     // Use this for initialization  
     void Start ()
     {
+
+        BackButton.text = LangManager.instance.GetWord("Back");
+        TimerButton.text = LangManager.instance.GetWord("TimerButton");
+        ResetButton.text = LangManager.instance.GetWord("ResetButton");
+
         Seconds = 0;
         TimerCount = false;
         TimerClock = GameObject.Find("TimerClock");
         SandClock = GameObject.Find("SandClock");
-        chessClock = GameObject.Find("ChessClock");
 
     }
 
    public void ClickTimer()
     {
 
-       if(TimerCount == false) { TimerCount = true; StartCoroutine(Second()); Button.text = "Pause"; }
-       else if(TimerCount == true) { TimerCount = false;StopCoroutine(Second()); Button.text = "Start"; }
+       if(TimerCount == false) { TimerCount = true; StartCoroutine(Second()); Button.text = LangManager.instance.GetWord("ButtonPause"); }
+       else if(TimerCount == true) { TimerCount = false;StopCoroutine(Second()); Button.text = LangManager.instance.GetWord("ButtonStart"); }
     }
 
   public  IEnumerator Second()
     {
         while (TimerCount == true)
         {
-
-            Debug.Log(Seconds);
-
             Seconds = Seconds + 1;
             yield return new WaitForSeconds(1);
         }
@@ -53,7 +58,7 @@ public class TimerScr : MonoBehaviour {
     }
 
 
-  public  void Reset()
+  public void Reset()
     {
         Seconds = 0;
         Minutes = 0;
@@ -64,19 +69,28 @@ public class TimerScr : MonoBehaviour {
     {
         if(Seconds == MaxSeconds)
         {
-           
             Seconds = 0;
             Minutes = Minutes + 1; 
+        }
+        if (Minutes == MaxMinutes)
+        {
+            Seconds = 0;
+            Minutes = 0;
+            Hours = Hours + 1;
+        }
+        if (Hours == MaxHours)
+        {
+            Seconds = 0;
+            Minutes = 0;
+            Hours = 0;
         }
         HoursTxt.text = "" + Hours;
         MinutesTxt.text = "" + Minutes;
         SecondsTxt.text = "" + Seconds;
     }
-
-
-    public void SwitchToChess(){TimerClock.SetActive(false);SandClock.SetActive(false);chessClock.SetActive(true);}
-    public void SwitchToSand() { TimerClock.SetActive(false); SandClock.SetActive(true); chessClock.SetActive(false); }
-    public void SwitchToTimer() { TimerClock.SetActive(true); SandClock.SetActive(false); chessClock.SetActive(false); }
+           
+    public void SwitchToSand() { TimerClock.SetActive(false); SandClock.SetActive(true); }
+    public void SwitchToTimer() { TimerClock.SetActive(true); SandClock.SetActive(false); }
 
 
 

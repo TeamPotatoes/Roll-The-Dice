@@ -9,12 +9,13 @@ public class TwisterScr : MonoBehaviour {
     public Text TxtTurn;
     public Text TxtResult;
     public Text TxtResult2;
+    public Sprite tw_foot; //спрайт ноги
+    public Sprite tw_hand; //спрайт руки
 
-    void Update()
-    {      
-        
+    void Start()
+    {
+        GetComponent<Renderer>().material.color = new Color(0.0F, 1.0F, 0.0F, 0.0F); //спрайт ноги виден при работе, но при старте игры станет прозрачным. Удобно
     }
-        
     //Функции вызвываемые по клику мышки
     public void ClickFlip()
     {
@@ -24,37 +25,43 @@ public class TwisterScr : MonoBehaviour {
         {
             TxtResult.text = "Red";
             TxtResult.color = Color.red;
-        }
-        if (finalnumber == 2)
+            GetComponent<SpriteRenderer>().material.color = Color.red;
+        } else if (finalnumber == 2)
         {
             TxtResult.text = "Green";
             TxtResult.color = Color.green;
-        }
-        if (finalnumber == 3)
+            GetComponent<SpriteRenderer>().material.color = Color.green;
+        }else if (finalnumber == 3)
         {
             TxtResult.text = "Yellow";
             TxtResult.color = Color.yellow;
-        }
-        if (finalnumber == 4)
+            GetComponent<SpriteRenderer>().material.color = Color.yellow;
+        }else if (finalnumber == 4)
         {
             TxtResult.text = "Blue";
             TxtResult.color = Color.blue;
+            GetComponent<SpriteRenderer>().material.color = Color.blue;
         }
         if (finalnumber2 == 1)
         {
             TxtResult2.text = "Left Hand";
-        }
-        if (finalnumber == 2)
+            GetComponent<SpriteRenderer>().sprite = tw_hand;
+            GetComponent<SpriteRenderer>().flipX = true;
+        } else if (finalnumber2 == 2)
         {
             TxtResult2.text = "Right Hand";
-        }
-        if (finalnumber == 3)
+            GetComponent<SpriteRenderer>().sprite = tw_hand;
+            GetComponent<SpriteRenderer>().flipX = false;
+        } else if (finalnumber2 == 3)
         {
             TxtResult2.text = "Left foot";
-        }
-        if (finalnumber == 4)
+            GetComponent<SpriteRenderer>().sprite = tw_foot;
+            GetComponent<SpriteRenderer>().flipX = false;
+        } else if (finalnumber2 == 4)
         {
             TxtResult2.text = "Right foot";
+            GetComponent<SpriteRenderer>().sprite = tw_foot;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
     }
     public void ClickBack()

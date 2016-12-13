@@ -71,15 +71,14 @@
   <ItemGroup>
     <Compile Include="Assets\CoinScr.cs" />
     <Compile Include="Assets\DicesScr.cs" />
+    <Compile Include="Assets\Lang\LangManager.cs" />
     <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\SettingsScr.cs" />
     <Compile Include="Assets\TimerScr.cs" />
     <Compile Include="Assets\TwisterScr.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Lang\ENG-eng.txt" />
-    <None Include="Assets\Lang\RU-ru.txt" />
-    <None Include="Assets\Lang\RU.json.txt" />
+    <None Include="Assets\Lang\LangFile.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
