@@ -21,8 +21,20 @@ public class DicesScr : MonoBehaviour {
     public Text TxtAddDice;
     public Text TxtResult;
     public Text TxtNumbers;
+    public Text BackButton;
+    public Text LastRoll;
     private List<string> numberofthem = new List<string>(); //создаем лист который будет хранить значения бросков
        
+    void Start()
+    {
+        TxtRoll.text = LangManager.instance.GetWord("Roll");
+        TxtPrevious.text = LangManager.instance.GetWord("Previous");
+        TxtNext.text = LangManager.instance.GetWord("Next");
+        TxtAddDice.text = LangManager.instance.GetWord("AddDice");
+        BackButton.text = LangManager.instance.GetWord("Back");
+        LastRoll.text = LangManager.instance.GetWord("LastRoll");
+
+    }
     void CheckName() //исполняем все что внутри только если нажата кнопка определенная
     {
         //список кубиков

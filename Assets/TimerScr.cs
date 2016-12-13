@@ -18,11 +18,21 @@ public class TimerScr : MonoBehaviour {
     public Text MinutesTxt;
     public Text SecondsTxt;
     public Text Button;
-    
+    public Text ResetButton;
+    public Text TimerButton;
+    public Text BackButton;
+
+
+
 
     // Use this for initialization  
     void Start ()
     {
+
+        BackButton.text = LangManager.instance.GetWord("Back");
+        TimerButton.text = LangManager.instance.GetWord("TimerButton");
+        ResetButton.text = LangManager.instance.GetWord("ResetButton");
+
         Seconds = 0;
         TimerCount = false;
         TimerClock = GameObject.Find("TimerClock");
@@ -33,8 +43,8 @@ public class TimerScr : MonoBehaviour {
    public void ClickTimer()
     {
 
-       if(TimerCount == false) { TimerCount = true; StartCoroutine(Second()); Button.text = "Pause"; }
-       else if(TimerCount == true) { TimerCount = false;StopCoroutine(Second()); Button.text = "Start"; }
+       if(TimerCount == false) { TimerCount = true; StartCoroutine(Second()); Button.text = LangManager.instance.GetWord("ButtonPause"); }
+       else if(TimerCount == true) { TimerCount = false;StopCoroutine(Second()); Button.text = LangManager.instance.GetWord("ButtonStart"); }
     }
 
   public  IEnumerator Second()

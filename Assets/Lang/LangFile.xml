@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Data>
+  <EN Key = "Coin"	Word = "Coin"/>
+  <EN Key = "FlipCoin"	Word = "Flip Coin Here"/>
+  <EN Key = "TxtResultHeads"	Word = "Heads"/>
+  <EN Key = "TxtResultTails"	Word = "Tails"/>
+  <EN Key = "Start"	Word = "Start"/>
+  <EN Key = "Reset"	Word = "Reset"/>
+  <EN Key = "Settings"	Word = "Settings"/>
+  <EN Key = "Back"	Word = "Back"/>
+  <EN Key = "Dice"	Word = "Dice"/>
+  <EN Key = "Twister"	Word = "Twister"/>
+  <EN Key = "Timers"	Word = "Timers"/>
+  <EN Key = "Changetorus"	Word = "Rus"/>
+  <EN Key = "Changetoeng"	Word = "Eng"/>
+  <EN Key = "Exit"	Word = "Exit"/>
+  <EN Key = "Roll"	Word = "Roll"/>
+  <EN Key = "Previous"	Word = "Previous"/>
+  <EN Key = "Next"	Word = "Next"/>
+  <EN Key = "AddDice"	Word = "AddDice"/>
+  <EN Key = "LastRoll"	Word = "Previous Rolls"/>
+  <EN Key = "ButtonStart"	Word = "Start"/>
+  <EN Key = "ButtonPause"	Word = "Pause"/>
+  <EN Key = "TimerButton"	Word = "Timer"/>
+  <EN Key = "ResetButton"	Word = "Reset"/>
+
+
+  <RU Key = "Coin"	Word = "Монетка"/>
+  <RU Key = "FlipCoin"	Word = "Подбросить монетку"/>
+  <RU Key = "TxtResultHeads"	Word = "Орел"/>
+  <RU Key = "TxtResultTails"	Word = "Решка"/>
+  <RU Key = "Start"	Word = "Старт"/>
+  <RU Key = "Reset"	Word = "Сброс"/>
+  <RU Key = "Settings"	Word = "Настройки"/>
+  <RU Key = "Back"	Word = "Назад"/>
+  <RU Key = "Dice"	Word = "Кубик"/>
+  <RU Key = "Twister"	Word = "Твистер"/>
+  <RU Key = "Timers"	Word = "Таймеры"/>
+  <RU Key = "Changetorus"	Word = "Рус"/>
+  <RU Key = "Changetoeng"	Word = "Англ"/>
+  <RU Key = "Exit"	Word = "Выход"/>
+  <RU Key = "Roll"	Word = "Ролл"/>
+  <RU Key = "Previous"	Word = "Предыдущий"/>
+  <RU Key = "Next"	Word = "Следующий"/>
+  <RU Key = "AddDice"	Word = "Добавить Кубик"/>
+  <RU Key = "LastRoll"	Word = "Предыдущий бросок"/>
+  <RU Key = "ButtonStart"	Word = "Старт"/>
+  <RU Key = "ButtonPause"	Word = "Пауза"/>
+  <RU Key = "TimerButton"	Word = "Таймер"/>
+  <RU Key = "ResetButton"	Word = "Сброс"/>
+
+</Data>
