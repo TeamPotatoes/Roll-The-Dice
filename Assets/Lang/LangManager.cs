@@ -4,7 +4,6 @@ using System.Xml;
 using System.IO;
 
 
-
 public class LangManager : MonoBehaviour {
 
 
@@ -13,14 +12,15 @@ public class LangManager : MonoBehaviour {
     public string[] tags;
     public TextAsset languageFile;
     private string lang;
-    private string Lang {get{return lang;}set{PlayerPrefs.SetString("SysLanguage", value); lang = value;}}
+    private string Lang { get { return lang; } set { PlayerPrefs.SetString("SysLanguage", value); lang = value; } }
+    private string SysLang;
+
 
     public string GetLang()
     {
         return lang;
         
     }
-
  /*   public void SetLang(string lan)
     {
         PlayerPrefs.SetString("SysLanguage", lan);
@@ -32,6 +32,7 @@ public class LangManager : MonoBehaviour {
     
     void Awake()
     {
+        SysLang = Application.systemLanguage.ToString();
         instance = this;
     }
 
@@ -46,14 +47,23 @@ public class LangManager : MonoBehaviour {
     void Start()
     {
        DontDestoryThisFile();
-    
 
-        if (!PlayerPrefs.HasKey("SysLanguage"))
+
+        if (!PlayerPrefs.HasKey("SysLanguage") || !PlayerPrefs.HasKey("SysLanguage") && SysLang == "Russian")
         {
+            PlayerPrefs.SetString("SysLanguage", "RU");
+            PlayerPrefs.Save();
+            // PlayerPrefs.SetString("SysLanguage", "EN");
             Lang = tags[0];
+        }
+        else if (!PlayerPrefs.HasKey("SysLanguage") || !PlayerPrefs.HasKey("SysLanguage") && SysLang == "Russian")
+        {
+            PlayerPrefs.SetString("SysLanguage", "EN");
+            PlayerPrefs.Save();
         }
         else
         {
+           
             Lang = PlayerPrefs.GetString("SysLanguage");
            
         }
