@@ -1,19 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Data>
-  
+  <!--- MainMenu -->
   <EN Key = "Coin"	Word = "Coin"/>
+  <EN Key = "Timers"	Word = "Timers"/>
+  <EN Key = "Dice"	Word = "Dices"/>
+  <EN Key = "Twister"	Word = "Twister"/>
+  
   <EN Key = "FlipCoin"	Word = "Flip Coin Here"/>
   <EN Key = "TxtResultHeads"	Word = "Heads"/>
   <EN Key = "TxtResultTails"	Word = "Tails"/>
   <EN Key = "Start"	Word = "Start"/>
   <EN Key = "Reset"	Word = "Reset"/>
-  <EN Key = "Twister"	Word = "Twister"/>
-  <EN Key = "Dice"	Word = "Dices"/>
   <EN Key = "Roll"	Word = "Roll"/>
   <EN Key = "LastRoll"	Word = "Previous Rolls"/>
   <EN Key = "AddDice"	Word = "AddDice"/>
   <EN Key = "ChooseDice"	Word = "Choose Dice"/>
-  <EN Key = "Timers"	Word = "Timers"/>
   <EN Key = "Pause"	Word = "Pause"/>
   <EN Key = "Timer"	Word = "Timer"/>
   <EN Key = "SandGlass"	Word = "Sandglass"/>
@@ -34,7 +35,7 @@
   <EN Key = "Changetorus"	Word = "Rus"/>
   <EN Key = "Changetoeng"	Word = "Eng"/>
   <EN Key = "Exit"	Word = "Exit"/>  
-  
+ 
   
   <RU Key = "Coin"	Word = "Монетка"/>
   <RU Key = "FlipCoin"	Word = "Подбросить монетку"/>
