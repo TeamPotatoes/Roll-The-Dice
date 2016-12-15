@@ -61,7 +61,13 @@ public class DicesScr : MonoBehaviour {
     {
         TxtResult.text = "" + finalnumber + "+" + finalnumber2 + "=" + totalnumber;
     }
-}
+
+        for (int i = 1; i < numberofthem.Count; i++)
+        {            
+            Text TxtAllRolls = GameObject.Find("TxtCountedRolls").GetComponent<Text>();
+                TxtAllRolls.text = i + ". " + numberofthem[i] + "\n";
+        }
+    }
        
     public void ClickAddDice ()
     {
