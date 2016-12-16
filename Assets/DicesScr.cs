@@ -125,6 +125,13 @@ public class DicesScr : MonoBehaviour {
         maxnumber = 31; 
         TxtRoll.text = "D30 " + LangManager.instance.GetWord("Roll");
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
     public void ClickBack()
     {
         SceneManager.LoadScene("MainMenu");

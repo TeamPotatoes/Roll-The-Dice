@@ -70,7 +70,13 @@ public class TimerScr : MonoBehaviour {
     }
     void Update()
     {
-        if(Seconds == MaxSeconds)
+        
+           if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("MainMenu");
+            }
+       
+        if (Seconds == MaxSeconds)
         {
             Seconds = 0;
             Minutes = Minutes + 1; 
