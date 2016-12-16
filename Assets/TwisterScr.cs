@@ -69,6 +69,13 @@ public class TwisterScr : MonoBehaviour {
             GetComponent<SpriteRenderer>().flipX = true;
         }
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
     public void ClickBack()
     {
         SceneManager.LoadScene("MainMenu");

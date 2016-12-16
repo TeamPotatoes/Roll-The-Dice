@@ -29,6 +29,13 @@ public class CoinScr : MonoBehaviour {
             TxtResult.text = LangManager.instance.GetWord("TxtResultTails");
         }
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
     public void ClickBack()
     {
         SceneManager.LoadScene("MainMenu");

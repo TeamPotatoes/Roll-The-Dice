@@ -33,6 +33,13 @@ public class SettingsScr : MonoBehaviour {
         EngButton.text = LangManager.instance.GetWord("Changetoeng");
         TxtBack.text = LangManager.instance.GetWord("Back");
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+    }
     public void ClickBack()
     {
         SceneManager.LoadScene("MainMenu");
