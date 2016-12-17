@@ -16,7 +16,7 @@ public class TwisterScr : MonoBehaviour {
     void Start()
     {
         GetComponent<Renderer>().material.color = new Color(0.0F, 1.0F, 0.0F, 0.0F); //спрайт ноги виден при работе, но при старте игры станет прозрачным. Удобно
-        TxtTurn.text = LangManager.instance.GetWord("FlipCoin");
+        TxtTurn.text = LangManager.instance.GetWord("Turn");
         TxtResult.text = LangManager.instance.GetWord("TwisterColor");
         TxtResult2.text = LangManager.instance.GetWord("TwisterLimb");
         TxtBack.text = LangManager.instance.GetWord("Back");
