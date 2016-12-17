@@ -17,6 +17,7 @@ public class DicesScr : MonoBehaviour {
     public Text TxtBack;
     public Text TxtLastRoll;
     public Text TxtChooseDice;
+    public GameObject AllRollsList;
     private List<string> numberofthem = new List<string>(); //создаем лист который будет хранить значения бросков
        
     void Start()
@@ -25,51 +26,33 @@ public class DicesScr : MonoBehaviour {
         TxtAddDice.text = LangManager.instance.GetWord("AddDice");
         TxtResult.text = LangManager.instance.GetWord("Result");
         TxtBack.text = LangManager.instance.GetWord("Back");
-        TxtLastRoll.text = LangManager.instance.GetWord("LastRoll");
+        TxtLastRoll.text = LangManager.instance.GetWord("AllResults");
         TxtChooseDice.text = LangManager.instance.GetWord("ChooseDice");
     }
 
-    void OnGUI()
-    {        
-            //выводим список последних 10 бросков на экран
-            for (int i = 1; i < numberofthem.Count && i < 10; i++)
-            {   
-            if (numberofthem.Count > 10)
-            {         
-                GUI.Box(new Rect(900, 500 + i * 20, 260, 20), numberofthem.Count - i  + ". " + numberofthem[numberofthem.Count - i]);
-            } else { GUI.Box(new Rect(900, 700 - i * 20, 260, 20),  i  +  ". " + numberofthem[i]);};
-            }     
-            if (showlist)
-            {
-                for (int i = 1; i < numberofthem.Count; i++)
-                {
-                    GUI.Box(new Rect(900, 700 - i * 20, 260, 20), i + ". " + numberofthem[i]);
-                }
-            }   else { return; }
-    }
-
-    public void ClickRoll()
-{
-    finalnumber = Random.Range(minnumber, maxnumber);
-    if (twodices)
-    { finalnumber2 = Random.Range(minnumber, maxnumber); }
-    else { finalnumber2 = 0; }
-    totalnumber = finalnumber + finalnumber2;
-    numberofthem.Add(TxtResult.text.ToString()); //при клике добавляем полученый результат в лист бросков
-    if (twodices == false) { TxtResult.text = "" + finalnumber; }
-    else if (twodices)
+ 
+    public void ClickRoll() //бросок
     {
-        TxtResult.text = "" + finalnumber + "+" + finalnumber2 + "=" + totalnumber;
-    }
-
-        for (int i = 1; i < numberofthem.Count; i++)
-        {            
-            Text TxtAllRolls = GameObject.Find("TxtCountedRolls").GetComponent<Text>();
-                TxtAllRolls.text = i + ". " + numberofthem[i] + "\n";
+        finalnumber = Random.Range(minnumber, maxnumber);
+        if (twodices)
+        {finalnumber2 = Random.Range(minnumber, maxnumber);}
+        else { finalnumber2 = 0; }
+        totalnumber = finalnumber + finalnumber2;
+        numberofthem.Add(TxtResult.text.ToString()); //при клике добавляем полученый результат в лист бросков
+        if (twodices == false) { TxtResult.text = "" + finalnumber; }
+        else if (twodices)
+        {TxtResult.text = "" + finalnumber + "+" + finalnumber2 + "=" + totalnumber;}
+        Text TxtRolls = GameObject.Find("TxtCurrentRolls").GetComponent<Text>();
+        TxtRolls.text = "";
+        for (int i = 1; i < numberofthem.Count && i < 6; i++)
+        {
+            TxtRolls.text += numberofthem.Count - i + ". " + numberofthem[numberofthem.Count - i] + "\n"; 
         }
+        if (showlist) // если список всех бросков открыт, то прячем его при броске
+        {ClickShowList();}
     }
        
-    public void ClickAddDice ()
+    public void ClickAddDice () //добавить кубик
     {
         if (twodices == false)
         {
@@ -82,13 +65,19 @@ public class DicesScr : MonoBehaviour {
             TxtAddDice.text = "Add dice";
         }
     }    
-    public void ClickShowList()
-    {
+    public void ClickShowList() //выводит список всех бросков
+    {               
         if (!showlist)
         {
             showlist = true;
-        } else {showlist = false;}
-        
+            AllRollsList.SetActive(true); //активируем всплывающее меню с общим количеством бросков
+            Text TxtAllRolls = GameObject.Find("TxtCountedRolls").GetComponent<Text>();
+            TxtAllRolls.text = "";         
+                for (int i = 1; i < numberofthem.Count; i++)
+                {
+                    TxtAllRolls.text += numberofthem.Count - i + ". " + numberofthem[numberofthem.Count - i] + "\n";
+                }
+        } else {showlist = false; AllRollsList.SetActive(false);}       
     }
     public void ClickD4()
     {

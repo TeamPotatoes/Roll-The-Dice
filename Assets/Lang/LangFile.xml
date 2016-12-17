@@ -4,15 +4,14 @@
   <EN Key = "Coin"	Word = "Coin"/>
   <EN Key = "Timers"	Word = "Timers"/>
   <EN Key = "Dice"	Word = "Dices"/>
-  <EN Key = "Twister"	Word = "Twister"/>
-  
+  <EN Key = "Twister"	Word = "Twister"/>  
   <EN Key = "FlipCoin"	Word = "Flip Coin Here"/>
   <EN Key = "TxtResultHeads"	Word = "Heads"/>
   <EN Key = "TxtResultTails"	Word = "Tails"/>
   <EN Key = "Start"	Word = "Start"/>
   <EN Key = "Reset"	Word = "Reset"/>
   <EN Key = "Roll"	Word = "Roll"/>
-  <EN Key = "LastRoll"	Word = "Previous Rolls"/>
+  <EN Key = "AllResults"	Word = "Previous Results"/>
   <EN Key = "AddDice"	Word = "AddDice"/>
   <EN Key = "ChooseDice"	Word = "Choose Dice"/>
   <EN Key = "Pause"	Word = "Pause"/>
@@ -46,7 +45,7 @@
   <RU Key = "Twister"	Word = "Твистер"/>
   <RU Key = "Dice"	Word = "Кубики"/>
   <RU Key = "Roll"	Word = "Бросок"/> 
-  <RU Key = "LastRoll"	Word = "Предыдущий бросок"/>
+  <RU Key = "AllResults"	Word = "Предыдущие результаты"/>
   <RU Key = "AddDice"	Word = "+ кубик"/>
   <RU Key = "ChooseDice"	Word = "Выбрать Кубик"/>
   <RU Key = "Timers"	Word = "Таймеры"/>
