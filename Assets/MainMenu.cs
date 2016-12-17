@@ -19,6 +19,13 @@ public class MainMenu : MonoBehaviour {
         SettingButton.text = LangManager.instance.GetWord("Settings");
         ExitButton.text = LangManager.instance.GetWord("Exit");
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
 
     public void DiceScene ()
     {SceneManager.LoadScene("DiceScene");}
