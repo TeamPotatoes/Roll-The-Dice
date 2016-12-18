@@ -39,7 +39,7 @@ public class CoinScr : MonoBehaviour {
             TxtCurrentResults.text += numberofthem.Count - i + ". " + numberofthem[numberofthem.Count - i] + "\n";
         }
         Text TxtPercentage = GameObject.Find("TxtPercentage").GetComponent<Text>();        
-        TxtPercentage.text = LangManager.instance.GetWord("TxtResultHeads") + ": " + headscount + "(" + (headscount / numberofthem.Count) * 100 + "%)" + LangManager.instance.GetWord("TxtResultTails") + ": " + tailscount + "(" + numberofthem.Count / tailscount + "%)" + "\n" + numberofthem.Count;
+        TxtPercentage.text = LangManager.instance.GetWord("TxtResultHeads") + ": " + headscount + "(" + numberofthem.Count/ headscount + "%)" + LangManager.instance.GetWord("TxtResultTails") + ": " + tailscount + "(" + Mathf.Lerp(numberofthem.Count, tailscount, 1) + "%)" + "\n" + numberofthem.Count;
         if (showlist) // если список всех бросков открыт, то прячем его при броске
         { ClickShowList(); }
     }
