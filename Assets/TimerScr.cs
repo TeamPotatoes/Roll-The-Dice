@@ -4,78 +4,82 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class TimerScr : MonoBehaviour {
-
+    /*очень сильно упростил и оптимизровал этот скрипт
+     1. убрал повторяющиеся переменные в старте (уже присутствуют в иницииации)
+     2. убрал кнопку Timer. Теперь одна кнопка Sandglass и при ее нажатии она меняется на Timer
+     3. убрал объекты seconds, minutes, hours и вписал все данные в один текстовый объект TxtCounts, сильно облегчило скрипт
+     4. как следсвтие, убрал объекты TimerCLock и SandClock и их присутствие в скрипте, осуществил работу через переменные EnableTimer.
+     5. мелкие исправления по ходу кода, убирал копирующие друг друга переменные. Например в ClickTimer вывел за if'ы StartCoroutine(Second()) т.к. он должен включаться в любом случае и нет смысла его повторять в каждом if+
+     6. Добавлен функционал для песочных часов. Время отсчитывается в обратном порядке
+     7. Добавлена возможность выбирать время для песочных часов. Шаг 10 сек
+     */
     private int Seconds=0;
     private int Minutes=0;
     private int Hours=0;
     private float MaxSeconds = 61;
     private int MaxMinutes = 61;
     private int MaxHours = 25;
-    public bool TimerCount;
-    private GameObject TimerClock;
-    private GameObject SandClock;
-    public Text HoursTxt;
-    public Text MinutesTxt;
-    public Text SecondsTxt;
+    public bool TimerCount = false;
+    private bool EnableTimer = true;
+    private bool EnableSand = false;
     public Text TxtStart;
     public Text TxtReset;
-    public Text TxtTimer;
     public Text TxtBack;
     public Text TxtSandGlass;
+    public GameObject ChooseTime;
 
-
-
-
-    // Use this for initialization  
     void Start ()
     {
-
         TxtBack.text = LangManager.instance.GetWord("Back");
-        TxtTimer.text = LangManager.instance.GetWord("Timer");
         TxtStart.text = LangManager.instance.GetWord("Start");
         TxtReset.text = LangManager.instance.GetWord("Reset");
-        TxtSandGlass.text = LangManager.instance.GetWord("SandGlass");
-
-        Seconds = 0;
-        TimerCount = false;
-        TimerClock = GameObject.Find("TimerClock");
-        SandClock = GameObject.Find("SandClock");
-
+        TxtSandGlass.text = LangManager.instance.GetWord("Timer");
+        ChooseTime.SetActive(false);
     }
 
    public void ClickTimer()
     {
-
-       if(TimerCount == false) { TimerCount = true; StartCoroutine(Second()); TxtStart.text = LangManager.instance.GetWord("Pause"); }
-       else if(TimerCount == true) { TimerCount = false;StopCoroutine(Second()); TxtStart.text = LangManager.instance.GetWord("Start"); }
+            if (!TimerCount)
+            {
+                TimerCount = true;                
+                TxtStart.text = LangManager.instance.GetWord("Pause");
+            } else if (TimerCount)
+            {
+                TimerCount = false;
+                TxtStart.text = LangManager.instance.GetWord("Start");
+            }
+        StartCoroutine(Second());
     }
 
-  public  IEnumerator Second()
+  public IEnumerator Second()
     {
-        while (TimerCount == true)
+        if (EnableTimer)
         {
-            Seconds = Seconds + 1;
-            yield return new WaitForSeconds(1);
+            while (TimerCount == true)
+            {
+                Seconds = Seconds + 1;
+                yield return new WaitForSeconds(1);
+            }
         }
-      
+        if (EnableSand)
+        {
+            while (TimerCount == true)
+            {
+                Seconds = Seconds - 1;
+                yield return new WaitForSeconds(1);
+            }
+        }
     }
-
 
   public void Reset()
     {
         Seconds = 0;
         Minutes = 0;
-        Hours = 0;
-        
+        Hours = 0;  
     }
+
     void Update()
-    {
-        
-           if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                SceneManager.LoadScene("MainMenu");
-            }
-       
+    {         
         if (Seconds == MaxSeconds)
         {
             Seconds = 0;
@@ -93,18 +97,55 @@ public class TimerScr : MonoBehaviour {
             Minutes = 0;
             Hours = 0;
         }
-        HoursTxt.text = "" + Hours;
-        MinutesTxt.text = "" + Minutes;
-        SecondsTxt.text = "" + Seconds;
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClickBack();
+        }
+        Text TxtCounts = GameObject.Find("TxtCounts").GetComponent<Text>();        
+        if (EnableSand && Seconds < 0)
+        {
+            TxtCounts.text = "TIME IS OVER";
+
+        } else { TxtCounts.text = Hours + "h " + Minutes + "m " + Seconds + "s"; }
     }
-           
-    public void SwitchToSand() { TimerClock.SetActive(false); SandClock.SetActive(true); }
-    public void SwitchToTimer() { TimerClock.SetActive(true); SandClock.SetActive(false); }
 
-
-
-    // Update is called once per frame
-
+    public void ClickChangeTimer()
+    {
+        if (EnableTimer)
+        {
+            EnableTimer = false;
+            EnableSand = true;
+            ChooseTime.SetActive(true);
+            TxtSandGlass.text = LangManager.instance.GetWord("SandGlass");
+        } else if (!EnableTimer)
+        {
+            EnableTimer = true;
+            EnableSand = false;
+            ChooseTime.SetActive(false);
+            TxtSandGlass.text = LangManager.instance.GetWord("Timer");
+            Reset(); //обнуляем таймер и останавливаем отсчет при переключении
+            if (TimerCount)
+            {
+                ClickTimer();
+            }
+        }
+        Reset(); //обнуляем таймер и останавливаем отсчет при переключении
+        if (TimerCount)
+        {
+            ClickTimer();
+        }
+    }
+    public void ClickAddSec()
+    {
+        Seconds += 10;
+    }
+    public void ClickDelSec()
+    {
+        if (Seconds >= 10)
+        {
+            Seconds -= 10;
+        }
+    }
     public void ClickBack()
     {
         SceneManager.LoadScene("MainMenu");
