@@ -42,16 +42,9 @@ public class DicesScr : MonoBehaviour {
         if (twodices == false) { TxtResult.text = "" + finalnumber; }
         else if (twodices)
         {TxtResult.text = "" + finalnumber + "+" + finalnumber2 + "=" + totalnumber;}
-        Text TxtRolls = GameObject.Find("TxtCurrentRolls").GetComponent<Text>();
-        TxtRolls.text = "";
-        for (int i = 1; i < numberofthem.Count && i < 6; i++)
-        {
-            TxtRolls.text += numberofthem.Count - i + ". " + numberofthem[numberofthem.Count - i] + "\n"; 
-        }
         if (showlist) // если список всех бросков открыт, то прячем его при броске
         {ClickShowList();}
-    }
-       
+    }    
     public void ClickAddDice () //добавить кубик
     {
         if (twodices == false)
