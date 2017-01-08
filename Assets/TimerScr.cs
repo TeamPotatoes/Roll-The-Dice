@@ -135,16 +135,41 @@ public class TimerScr : MonoBehaviour {
             ClickTimer();
         }
     }
+    //
     public void ClickAddSec()
-    {
-        Seconds += 10;
-    }
+    {Seconds += 1;}
     public void ClickDelSec()
     {
+        if (Seconds > 0)
+        {Seconds -= 1;}
+    }
+    public void ClickAdd10Sec()
+    {Seconds += 10;}
+    public void ClickDel10Sec()
+    {
         if (Seconds >= 10)
-        {
-            Seconds -= 10;
-        }
+        {Seconds -= 10;}
+    }
+    public void ClickAddMin()
+    {Minutes += 1;}
+    public void ClickDelMin()
+    {
+        if (Minutes > 0)
+        { Minutes -= 1;}
+    }
+    public void ClickAdd10Min()
+    {Minutes += 10;}    
+    public void ClickDel10Min()
+    {
+        if (Minutes > 10)
+        {Minutes -= 10;} 
+    }
+    public void ClickAddHr()
+    {Hours += 1;}
+    public void ClickDelHr()
+    {
+        if (Hours > 0)
+        {Hours -= 1;}
     }
     public void ClickBack()
     {
