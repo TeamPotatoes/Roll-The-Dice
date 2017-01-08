@@ -11,12 +11,14 @@ public class CoinScr : MonoBehaviour {
     public Text TxtFlip;
     public Text TxtResult;
     public Text TxtBack;
-
+    public GameObject AcelBitch;
+        
     void Start()
     {      
         TxtFlip.text = LangManager.instance.GetWord("FlipCoin");
         TxtResult.text = LangManager.instance.GetWord("Result");
         TxtBack.text = LangManager.instance.GetWord("Back");
+
     }
     //Функции вызвываемые по клику мышки
     public void ClickFlip()
@@ -35,8 +37,18 @@ public class CoinScr : MonoBehaviour {
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {SceneManager.LoadScene("MainMenu");}
+        { ClickBack(); } 
+        LangManager Delta1 = AcelBitch.GetComponent<LangManager>();
+        if (Delta1.DeltaAccel.sqrMagnitude >= Delta1.ShakeDetectPoint)
+        {
+            Debug.Log("DSDFDSFSFD" + Time.deltaTime);
+            ClickFlip();
+        }
     }
     public void ClickBack()
     {SceneManager.LoadScene("MainMenu");}
+
+
+    
+
 }

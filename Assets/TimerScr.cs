@@ -12,10 +12,11 @@ public class TimerScr : MonoBehaviour {
      5. мелкие исправления по ходу кода, убирал копирующие друг друга переменные. Например в ClickTimer вывел за if'ы StartCoroutine(Second()) т.к. он должен включаться в любом случае и нет смысла его повторять в каждом if+
      6. Добавлен функционал для песочных часов. Время отсчитывается в обратном порядке
      7. Добавлена возможность выбирать время для песочных часов. Шаг 10 сек
+     8. Добавлено выпадающее меню в sandglass с возможностью выбирать нужное время
      */
-    private int Seconds=0;
-    private int Minutes=0;
-    private int Hours=0;
+    private int Seconds = 0;
+    private int Minutes = 0;
+    private int Hours = 0;
     private float MaxSeconds = 61;
     private int MaxMinutes = 61;
     private int MaxHours = 25;
@@ -28,7 +29,7 @@ public class TimerScr : MonoBehaviour {
     public Text TxtSandGlass;
     public GameObject ChooseTime;
 
-    void Start ()
+    void Start()
     {
         TxtBack.text = LangManager.instance.GetWord("Back");
         TxtStart.text = LangManager.instance.GetWord("Start");
@@ -37,21 +38,21 @@ public class TimerScr : MonoBehaviour {
         ChooseTime.SetActive(false);
     }
 
-   public void ClickTimer()
+    public void ClickTimer()
     {
-            if (!TimerCount)
-            {
-                TimerCount = true;                
-                TxtStart.text = LangManager.instance.GetWord("Pause");
-            } else if (TimerCount)
-            {
-                TimerCount = false;
-                TxtStart.text = LangManager.instance.GetWord("Start");
-            }
+        if (!TimerCount)
+        {
+            TimerCount = true;
+            TxtStart.text = LangManager.instance.GetWord("Pause");
+        } else if (TimerCount)
+        {
+            TimerCount = false;
+            TxtStart.text = LangManager.instance.GetWord("Start");
+        }
         StartCoroutine(Second());
     }
 
-  public IEnumerator Second()
+    public IEnumerator Second()
     {
         if (EnableTimer)
         {
@@ -71,19 +72,19 @@ public class TimerScr : MonoBehaviour {
         }
     }
 
-  public void Reset()
+    public void Reset()
     {
         Seconds = 0;
         Minutes = 0;
-        Hours = 0;  
+        Hours = 0;
     }
 
     void Update()
-    {         
+    {
         if (Seconds == MaxSeconds)
         {
             Seconds = 0;
-            Minutes = Minutes + 1; 
+            Minutes = Minutes + 1;
         }
         if (Minutes == MaxMinutes)
         {
@@ -101,11 +102,10 @@ public class TimerScr : MonoBehaviour {
         {
             ClickBack();
         }
-        Text TxtCounts = GameObject.Find("TxtCounts").GetComponent<Text>();        
+        Text TxtCounts = GameObject.Find("TxtCounts").GetComponent<Text>();
         if (EnableSand && Seconds < 0)
         {
             TxtCounts.text = "TIME IS OVER";
-
         } else { TxtCounts.text = Hours + "h " + Minutes + "m " + Seconds + "s"; }
     }
 
@@ -122,8 +122,7 @@ public class TimerScr : MonoBehaviour {
             EnableTimer = true;
             EnableSand = false;
             ChooseTime.SetActive(false);
-            TxtSandGlass.text = LangManager.instance.GetWord("Timer");
-            Reset(); //обнуляем таймер и останавливаем отсчет при переключении
+            TxtSandGlass.text = LangManager.instance.GetWord("Timer");            
             if (TimerCount)
             {
                 ClickTimer();
@@ -137,35 +136,50 @@ public class TimerScr : MonoBehaviour {
     }
     //
     public void ClickAddSec()
-    {Seconds += 1;}
+    {
+        if (Seconds < 59)
+        { Seconds += 1; }
+    }
     public void ClickDelSec()
     {
         if (Seconds > 0)
-        {Seconds -= 1;}
+        { Seconds -= 1; }
     }
     public void ClickAdd10Sec()
-    {Seconds += 10;}
+    {
+        if (Seconds < 50)
+        { Seconds += 10; }
+    }
     public void ClickDel10Sec()
     {
         if (Seconds >= 10)
-        {Seconds -= 10;}
+        { Seconds -= 10; }
     }
     public void ClickAddMin()
-    {Minutes += 1;}
+    {
+        if (Minutes < 59)
+        { Minutes += 1; }
+    }
     public void ClickDelMin()
     {
         if (Minutes > 0)
-        { Minutes -= 1;}
+        { Minutes -= 1; }
     }
     public void ClickAdd10Min()
-    {Minutes += 10;}    
+    {
+        if (Minutes < 50)
+        { Minutes += 10; }
+    }
     public void ClickDel10Min()
     {
         if (Minutes > 10)
-        {Minutes -= 10;} 
+        { Minutes -= 10; }
     }
     public void ClickAddHr()
-    {Hours += 1;}
+    { 
+        if (Hours < 24)
+        {Hours += 1;}
+    }
     public void ClickDelHr()
     {
         if (Hours > 0)
