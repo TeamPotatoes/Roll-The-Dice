@@ -11,7 +11,7 @@ public class CoinScr : MonoBehaviour {
     public Text TxtFlip;
     public Text TxtResult;
     public Text TxtBack;
-
+        
     void Start()
     {      
         TxtFlip.text = LangManager.instance.GetWord("FlipCoin");
@@ -34,8 +34,15 @@ public class CoinScr : MonoBehaviour {
     }   
     void Update()
     {
+        bool Delta1 = GameObject.Find("LangManager").GetComponent<LangManager>().ShakeIsOn;
+        if (Delta1 == true)
+        {
+            Debug.Log("DSDFDSFSFD" + Time.deltaTime);
+            ClickFlip();
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
-        {SceneManager.LoadScene("MainMenu");}
+        { ClickBack(); }
     }
     public void ClickBack()
     {SceneManager.LoadScene("MainMenu");}

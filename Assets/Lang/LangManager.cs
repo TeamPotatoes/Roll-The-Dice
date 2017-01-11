@@ -29,7 +29,17 @@ public class LangManager : MonoBehaviour {
     private Dictionary<string, Dictionary<string, string>> languages;
     private XmlDocument xmlDoc = new XmlDocument();
     private XmlReader reader;
-    
+
+    //переменные тряски
+    private float AccelUpadateInterval = 1 / 60;
+    private float LowPassSec = 1;
+    private float ShakeDetectPoint = 2;
+    private float LowPassFilter;
+    private Vector3 LowPassValue = Vector3.zero;
+    private Vector3 Accel;
+    private Vector3 DeltaAccel;
+    public bool ShakeIsOn;
+
     void Awake()
     {
         SysLang = Application.systemLanguage.ToString();
@@ -81,16 +91,31 @@ public class LangManager : MonoBehaviour {
                 languages[tags[i]].Add(langs[j].Attributes["Key"].Value, langs[j].Attributes["Word"].Value);
             }
         }
-     
+        //тряска
+        ShakeDetectPoint *= ShakeDetectPoint;
+        LowPassValue = Input.acceleration;
     }
 
     void Update()
     {
         lang = PlayerPrefs.GetString("SysLanguage");
+        //для тряски
+        LowPassFilter = AccelUpadateInterval / LowPassSec;
+        Accel = Input.acceleration;
+        LowPassValue = Vector3.Lerp(LowPassValue, Accel, LowPassFilter);
+        DeltaAccel = Accel - LowPassValue;
+        if (DeltaAccel.sqrMagnitude >= ShakeDetectPoint)
+        {
+            Debug.Log("ТРЯСЕТ БЛЕАААТЬ111" + Time.deltaTime);
+            ShakeIsOn = true;
+        }
+        else { ShakeIsOn = false;}
+   
     }
 
-  public string GetWord(string key)
+    public string GetWord(string key)
     {
         return languages[lang][key];
     }
+
 }
