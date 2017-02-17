@@ -16,8 +16,8 @@ public class MainMenu : MonoBehaviour {
         CoinButton.text = LangManager.instance.GetWord("Coin");
         TimersButton.text = LangManager.instance.GetWord("Timers");
         TwisterButton.text = LangManager.instance.GetWord("Twister");
-        SettingButton.text = LangManager.instance.GetWord("Settings");
-        ExitButton.text = LangManager.instance.GetWord("Exit");
+      //  SettingButton.text = LangManager.instance.GetWord("Settings");
+       // ExitButton.text = LangManager.instance.GetWord("Exit");
     }
     void Update()
     {

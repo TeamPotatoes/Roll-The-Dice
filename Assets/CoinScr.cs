@@ -14,9 +14,9 @@ public class CoinScr : MonoBehaviour {
         
     void Start()
     {      
-        TxtFlip.text = LangManager.instance.GetWord("FlipCoin");
+       // TxtFlip.text = LangManager.instance.GetWord("FlipCoin");
         TxtResult.text = LangManager.instance.GetWord("Result");
-        TxtBack.text = LangManager.instance.GetWord("Back");
+       // TxtBack.text = LangManager.instance.GetWord("Back");
     }
     //Функции вызвываемые по клику мышки
     public void ClickFlip()
