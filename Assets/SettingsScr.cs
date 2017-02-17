@@ -13,25 +13,25 @@ public class SettingsScr : MonoBehaviour {
       
         PlayerPrefs.SetString("SysLanguage", "EN");
         PlayerPrefs.Save();
-        RusButton.text = "Rus";
+     /*   RusButton.text = "Rus";
         EngButton.text = "Eng";
-        TxtBack.text = "Back";
+        TxtBack.text = "Back";*/
         Debug.Log(PlayerPrefs.GetString("SysLanguage"));
     }
     public void ChangeToRussian()
     {
         PlayerPrefs.SetString("SysLanguage", "RU");
         PlayerPrefs.Save();
-        RusButton.text = "Рус";
+      /*  RusButton.text = "Рус";
         EngButton.text = "Англ";
-        TxtBack.text = "Назад";
+        TxtBack.text = "Назад";*/
         Debug.Log(PlayerPrefs.GetString("SysLanguage"));
     }
     void Start()
     {
-        RusButton.text = LangManager.instance.GetWord("Changetorus");
+       /* RusButton.text = LangManager.instance.GetWord("Changetorus");
         EngButton.text = LangManager.instance.GetWord("Changetoeng");
-        TxtBack.text = LangManager.instance.GetWord("Back");
+        TxtBack.text = LangManager.instance.GetWord("Back");*/
     }
     void Update()
     {

@@ -75,7 +75,7 @@ public class DicesScr : MonoBehaviour {
     public void ClickD4()
     {
         maxnumber = 5; 
-        TxtRoll.text = "D4 " /*+ LangManager.instance.GetWord("Roll")*/;
+       TxtRoll.text = "D4 " /*+ LangManager.instance.GetWord("Roll")*/;
     }
     public void ClickD6()
     {
@@ -85,7 +85,7 @@ public class DicesScr : MonoBehaviour {
     public void ClickD8()
     {
         maxnumber = 9; 
-        TxtRoll.text = "D8 "/* + LangManager.instance.GetWord("Roll")*/;
+       TxtRoll.text = "D8 "/* + LangManager.instance.GetWord("Roll")*/;
     }
     public void ClickD10()
     {
@@ -109,6 +109,11 @@ public class DicesScr : MonoBehaviour {
     }
     void Update()
     {
+        bool Delta1 = GameObject.Find("LangManager").GetComponent<LangManager>().ShakeIsOn;
+        if (Delta1 == true)
+        {
+            ClickRoll();
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu");
