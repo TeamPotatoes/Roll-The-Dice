@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: fa83198f12a45f84c96cda3aea5138c6
-timeCreated: 1480452008
+timeCreated: 1487245092
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - TxtTurn: {instanceID: 0}
+  - TxtResult: {instanceID: 0}
+  - TxtResult2: {instanceID: 0}
+  - TxtBack: {instanceID: 0}
+  - tw_foot: {fileID: 21300000, guid: c63b364b4168b6146a9451c15e388640, type: 3}
+  - tw_hand: {fileID: 21300000, guid: 32e4b63dabe3de34abaab4f7d449cccc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
