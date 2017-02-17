@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
+using System.Collections;
 
 public class CoinScr : MonoBehaviour {
     private int finalnumber = 0; // результат броска 
@@ -11,7 +11,6 @@ public class CoinScr : MonoBehaviour {
     public Text TxtFlip;
     public Text TxtResult;
     public Text TxtBack;
-        
     void Start()
     {      
        // TxtFlip.text = LangManager.instance.GetWord("FlipCoin");
@@ -44,6 +43,7 @@ public class CoinScr : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         { ClickBack(); }
     }
+
     public void ClickBack()
     {SceneManager.LoadScene("MainMenu");}
 }
