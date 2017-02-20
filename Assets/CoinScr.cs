@@ -11,6 +11,9 @@ public class CoinScr : MonoBehaviour {
     public Text TxtFlip;
     public Text TxtResult;
     public Text TxtBack;
+    public Texture RusOrel;
+    public Texture RusReshka;
+
     void Start()
     {      
        // TxtFlip.text = LangManager.instance.GetWord("FlipCoin");
