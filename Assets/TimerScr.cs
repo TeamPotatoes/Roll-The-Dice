@@ -69,6 +69,9 @@ public class TimerScr : MonoBehaviour {
         Seconds = 0;
         Minutes = 0;
         Hours = 0;
+        StopAllCoroutines();
+        TimerCount = false;
+        
     }
 
     void Update()
@@ -84,9 +87,10 @@ public class TimerScr : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) { ClickBack(); }
 
         Text TxtCounts = GameObject.Find("TxtCounts").GetComponent<Text>();
-        if (EnableSand && Seconds < 0 && Minutes < 0 && Hours < 0)
+        if (EnableSand && Seconds <= 0 && Minutes <= 0 && Hours <= 0)
         {
             TxtCounts.text = "TIME IS OVER";
+            Reset();
         } else { TxtCounts.text = Hours + "h " + Minutes + "m " + Seconds + "s"; }
     }
 
@@ -113,7 +117,7 @@ public class TimerScr : MonoBehaviour {
                 ClickTimer();
             }
         }
-        Reset(); //обнуляем таймер и останавливаем отсчет при переключении
+       // Reset(); //обнуляем таймер и останавливаем отсчет при переключении
         if (TimerCount)
         {
             ClickTimer();
