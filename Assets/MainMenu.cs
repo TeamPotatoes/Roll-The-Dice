@@ -7,18 +7,19 @@ public class MainMenu : MonoBehaviour {
     public Text CoinButton;
     public Text TimersButton;
     public Text TwisterButton;
-    public Text SettingButton;
-    public Text ExitButton;
 
-    void Start()
+
+
+   /* void Start()
     {
         DiceButton.text = LangManager.instance.GetWord("Dice");
         CoinButton.text = LangManager.instance.GetWord("Coin");
         TimersButton.text = LangManager.instance.GetWord("Timers");
         TwisterButton.text = LangManager.instance.GetWord("Twister");
-      //  SettingButton.text = LangManager.instance.GetWord("Settings");
-       // ExitButton.text = LangManager.instance.GetWord("Exit");
-    }
+        
+    }*/
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
