@@ -22,10 +22,10 @@ public class DicesScr : MonoBehaviour {
        
     void Start()
     {
-        TxtRoll.text = "D6 " + LangManager.instance.GetWord("Roll");
+      //  TxtRoll.text = "D6 " + LangManager.instance.GetWord("Roll");
         TxtAddDice.text = LangManager.instance.GetWord("AddDice");
         TxtResult.text = LangManager.instance.GetWord("Result");
-        TxtBack.text = LangManager.instance.GetWord("Back");
+     //   TxtBack.text = LangManager.instance.GetWord("Back");
         TxtLastRoll.text = LangManager.instance.GetWord("AllResults");
         TxtChooseDice.text = LangManager.instance.GetWord("ChooseDice");
     }
@@ -75,40 +75,45 @@ public class DicesScr : MonoBehaviour {
     public void ClickD4()
     {
         maxnumber = 5; 
-        TxtRoll.text = "D4 " + LangManager.instance.GetWord("Roll");
+       TxtRoll.text = "D4 " /*+ LangManager.instance.GetWord("Roll")*/;
     }
     public void ClickD6()
     {
         maxnumber = 7; 
-        TxtRoll.text = "D6 " + LangManager.instance.GetWord("Roll");
+        TxtRoll.text = "D6 " /*+ LangManager.instance.GetWord("Roll")*/;
     }
     public void ClickD8()
     {
         maxnumber = 9; 
-        TxtRoll.text = "D8 " + LangManager.instance.GetWord("Roll");
+       TxtRoll.text = "D8 "/* + LangManager.instance.GetWord("Roll")*/;
     }
     public void ClickD10()
     {
         maxnumber = 11; 
-        TxtRoll.text = "D10 " + LangManager.instance.GetWord("Roll");
+        TxtRoll.text = "D10 "/* + LangManager.instance.GetWord("Roll")*/;
     }
     public void ClickD12()
     {
         maxnumber = 13; 
-        TxtRoll.text = "D12 " + LangManager.instance.GetWord("Roll");
+        TxtRoll.text = "D12 "/* + LangManager.instance.GetWord("Roll")*/;
     }
     public void ClickD20()
     {
         maxnumber = 21;
-        TxtRoll.text = "D20 " + LangManager.instance.GetWord("Roll");
+        TxtRoll.text = "D20 "/* + LangManager.instance.GetWord("Roll")*/;
     }
     public void ClickD30()
     {
         maxnumber = 31; 
-        TxtRoll.text = "D30 " + LangManager.instance.GetWord("Roll");
+        TxtRoll.text = "D30 " /*+ LangManager.instance.GetWord("Roll")*/;
     }
     void Update()
     {
+        bool Delta1 = GameObject.Find("LangManager").GetComponent<LangManager>().ShakeIsOn;
+        if (Delta1 == true)
+        {
+            ClickRoll();
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu");

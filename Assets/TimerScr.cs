@@ -4,16 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class TimerScr : MonoBehaviour {
-    /*очень сильно упростил и оптимизровал этот скрипт
-     1. убрал повторяющиеся переменные в старте (уже присутствуют в иницииации)
-     2. убрал кнопку Timer. Теперь одна кнопка Sandglass и при ее нажатии она меняется на Timer
-     3. убрал объекты seconds, minutes, hours и вписал все данные в один текстовый объект TxtCounts, сильно облегчило скрипт
-     4. как следсвтие, убрал объекты TimerCLock и SandClock и их присутствие в скрипте, осуществил работу через переменные EnableTimer.
-     5. мелкие исправления по ходу кода, убирал копирующие друг друга переменные. Например в ClickTimer вывел за if'ы StartCoroutine(Second()) т.к. он должен включаться в любом случае и нет смысла его повторять в каждом if+
-     6. Добавлен функционал для песочных часов. Время отсчитывается в обратном порядке
-     7. Добавлена возможность выбирать время для песочных часов. Шаг 10 сек
-     8. Добавлено выпадающее меню в sandglass с возможностью выбирать нужное время
-     */
+
     private int Seconds = 0;
     private int Minutes = 0;
     private int Hours = 0;
@@ -31,11 +22,12 @@ public class TimerScr : MonoBehaviour {
 
     void Start()
     {
-        TxtBack.text = LangManager.instance.GetWord("Back");
-        TxtStart.text = LangManager.instance.GetWord("Start");
-        TxtReset.text = LangManager.instance.GetWord("Reset");
-        TxtSandGlass.text = LangManager.instance.GetWord("Timer");
+       // TxtBack.text = LangManager.instance.GetWord("Back");
+       // TxtStart.text = LangManager.instance.GetWord("Start");
+       // TxtReset.text = LangManager.instance.GetWord("Reset");
+      //  TxtSandGlass.text = LangManager.instance.GetWord("Timer");
         ChooseTime.SetActive(false);
+        Debug.Log(ChooseTime.activeInHierarchy);
     }
 
     public void ClickTimer()
@@ -43,18 +35,18 @@ public class TimerScr : MonoBehaviour {
         if (!TimerCount)
         {
             TimerCount = true;
-            TxtStart.text = LangManager.instance.GetWord("Pause");
+         //   TxtStart.text = LangManager.instance.GetWord("Pause");
         } else if (TimerCount)
         {
             TimerCount = false;
-            TxtStart.text = LangManager.instance.GetWord("Start");
+          //  TxtStart.text = LangManager.instance.GetWord("Start");
         }
         StartCoroutine(Second());
     }
 
     public IEnumerator Second()
     {
-        if (EnableTimer)
+        if (EnableTimer && !EnableSand)
         {
             while (TimerCount == true)
             {
@@ -62,7 +54,7 @@ public class TimerScr : MonoBehaviour {
                 yield return new WaitForSeconds(1);
             }
         }
-        if (EnableSand)
+        if (EnableSand && !EnableTimer)
         {
             while (TimerCount == true)
             {
@@ -77,64 +69,60 @@ public class TimerScr : MonoBehaviour {
         Seconds = 0;
         Minutes = 0;
         Hours = 0;
+        StopAllCoroutines();
+        TimerCount = false;
+        
     }
 
     void Update()
     {
-        if (Seconds == MaxSeconds)
-        {
-            Seconds = 0;
-            Minutes = Minutes + 1;
-        }
-        if (Minutes == MaxMinutes)
-        {
-            Seconds = 0;
-            Minutes = 0;
-            Hours = Hours + 1;
-        }
-        if (Hours == MaxHours)
-        {
-            Seconds = 0;
-            Minutes = 0;
-            Hours = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ClickBack();
-        }
+        if (Seconds < 0) { Seconds = 59;Minutes = Minutes - 1; }
+        if (Minutes < 0) { Minutes = 59;Hours = Hours - 1; }
+        if (Hours < 0) { Hours = 0; }
+
+        if (Seconds == MaxSeconds)  { Seconds = 0; Minutes = Minutes + 1; }
+        if (Minutes == MaxMinutes) { Seconds = 0; Minutes = 0; Hours = Hours + 1; }
+        if (Hours == MaxHours) {  Seconds = 0;Minutes = 0; Hours = 0; }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) { ClickBack(); }
+
         Text TxtCounts = GameObject.Find("TxtCounts").GetComponent<Text>();
-        if (EnableSand && Seconds < 0)
+        if (EnableSand && Seconds <= 0 && Minutes <= 0 && Hours <= 0)
         {
             TxtCounts.text = "TIME IS OVER";
+            Reset();
         } else { TxtCounts.text = Hours + "h " + Minutes + "m " + Seconds + "s"; }
     }
 
     public void ClickChangeTimer()
     {
+       /* if (ChooseTime.activeInHierarchy == false) { ChooseTime.SetActive(true); Debug.Log(ChooseTime.activeInHierarchy); }
+        if (ChooseTime.activeInHierarchy == true) { ChooseTime.SetActive(false); Debug.Log(ChooseTime.activeInHierarchy); }*/
+        
         if (EnableTimer)
         {
             EnableTimer = false;
             EnableSand = true;
             ChooseTime.SetActive(true);
-            TxtSandGlass.text = LangManager.instance.GetWord("SandGlass");
-        } else if (!EnableTimer)
+          //  TxtSandGlass.text = LangManager.instance.GetWord("SandGlass");
+        }
+        else if (!EnableTimer)
         {
-            EnableTimer = true;
+           EnableTimer = true;
             EnableSand = false;
             ChooseTime.SetActive(false);
-            TxtSandGlass.text = LangManager.instance.GetWord("Timer");            
+            //TxtSandGlass.text = LangManager.instance.GetWord("Timer");            
             if (TimerCount)
             {
                 ClickTimer();
             }
         }
-        Reset(); //обнуляем таймер и останавливаем отсчет при переключении
+       // Reset(); //обнуляем таймер и останавливаем отсчет при переключении
         if (TimerCount)
         {
             ClickTimer();
         }
     }
-    //
     public void ClickAddSec()
     {
         if (Seconds < 59)
@@ -188,5 +176,11 @@ public class TimerScr : MonoBehaviour {
     public void ClickBack()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+    public void SetTimeActive()
+    {
+        if (ChooseTime.activeInHierarchy == false) { Debug.Log(ChooseTime.activeInHierarchy); }
+        //if (ChooseTime.activeInHierarchy == true) { ChooseTime.SetActive(false); Debug.Log(ChooseTime.activeInHierarchy); }
+        else { ChooseTime.SetActive(false); Debug.Log(ChooseTime.activeInHierarchy); }
     }
 }

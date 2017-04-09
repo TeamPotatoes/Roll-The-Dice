@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class TwisterScr : MonoBehaviour {
@@ -15,11 +14,12 @@ public class TwisterScr : MonoBehaviour {
 
     void Start()
     {
+
         GetComponent<Renderer>().material.color = new Color(0.0F, 1.0F, 0.0F, 0.0F); //спрайт ноги виден при работе, но при старте игры станет прозрачным. Удобно
-        TxtTurn.text = LangManager.instance.GetWord("Turn");
+       // TxtTurn.text = LangManager.instance.GetWord("Turn");
         TxtResult.text = LangManager.instance.GetWord("TwisterColor");
         TxtResult2.text = LangManager.instance.GetWord("TwisterLimb");
-        TxtBack.text = LangManager.instance.GetWord("Back");
+    //    TxtBack.text = LangManager.instance.GetWord("Back");
     }
     //Функции вызвываемые по клику мышки
     public void ClickFlip()
@@ -71,6 +71,7 @@ public class TwisterScr : MonoBehaviour {
     }
     void Update()
     {
+      
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu");

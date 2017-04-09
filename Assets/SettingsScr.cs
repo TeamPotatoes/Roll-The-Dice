@@ -3,46 +3,71 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SettingsScr : MonoBehaviour {
-    public Text RusButton;
-    public Text EngButton;
-    public Text TxtBack;
-  
 
-    public void ChangeToEnglish()
-    {
-      
-        PlayerPrefs.SetString("SysLanguage", "EN");
-        PlayerPrefs.Save();
-        RusButton.text = "Rus";
-        EngButton.text = "Eng";
-        TxtBack.text = "Back";
-        Debug.Log(PlayerPrefs.GetString("SysLanguage"));
-    }
-    public void ChangeToRussian()
-    {
-        PlayerPrefs.SetString("SysLanguage", "RU");
-        PlayerPrefs.Save();
-        RusButton.text = "Рус";
-        EngButton.text = "Англ";
-        TxtBack.text = "Назад";
-        Debug.Log(PlayerPrefs.GetString("SysLanguage"));
-    }
+    public GameObject ChangeToRu;
+    public GameObject ChangeToEn;
+    private string CurrentLang;
+
+
+    public Text DiceButton;
+    public Text CoinButton;
+    public Text TimersButton;
+    public Text TwisterButton;
+
     void Start()
     {
-        RusButton.text = LangManager.instance.GetWord("Changetorus");
-        EngButton.text = LangManager.instance.GetWord("Changetoeng");
-        TxtBack.text = LangManager.instance.GetWord("Back");
+        if (CurrentLang == "EN")
+        {
+            ChangeToRu.SetActive(true); ChangeToEn.SetActive(false);
+        }
+        if (CurrentLang == "RU")
+        {
+            ChangeToRu.SetActive(false); ChangeToEn.SetActive(true);
+        }
+        DiceButton.text = LangManager.instance.GetWord("Dice");
+        CoinButton.text = LangManager.instance.GetWord("Coin");
+        TimersButton.text = LangManager.instance.GetWord("Timers");
+        TwisterButton.text = LangManager.instance.GetWord("Twister");
     }
-    void Update()
+    
+
+   
+    public void Changelang()
     {
+        if (CurrentLang == "EN")
+        {
+            PlayerPrefs.SetString("SysLanguage", "RU");
+            PlayerPrefs.Save();
+           ChangeButton();
+            Debug.Log(CurrentLang);
+            ChangeToRu.SetActive(true); ChangeToEn.SetActive(false);
+        }
+         if(CurrentLang == "RU")
+        {
+            PlayerPrefs.SetString("SysLanguage", "EN");
+            PlayerPrefs.Save();
+            ChangeButton();
+            Debug.Log(CurrentLang);
+            ChangeToRu.SetActive(false); ChangeToEn.SetActive(true);
+        }
+    }
+    public void ChangeButton()
+    {
+        DiceButton.text = LangManager.instance.GetWord("Dice");
+        CoinButton.text = LangManager.instance.GetWord("Coin");
+        TimersButton.text = LangManager.instance.GetWord("Timers");
+        TwisterButton.text = LangManager.instance.GetWord("Twister");
+    }
+    
+    
+    void FixedUpdate()
+    {
+        CurrentLang = PlayerPrefs.GetString("SysLanguage", "");
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu");
         }
     }
-    public void ClickBack()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
+  
 }
 

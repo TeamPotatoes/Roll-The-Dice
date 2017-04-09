@@ -56,10 +56,10 @@
   <RU Key = "Turn"	Word = "Вращать"/>
   <RU Key = "TwisterColor"	Word = "Цвет"/>
   <RU Key = "TwisterLimb"	Word = "Рука/Нога"/>
-  <RU Key = "Red"	Word = "Красный цвет"/>
-  <RU Key = "Blue"	Word = "Синий цвет"/>
-  <RU Key = "Yellow"	Word = "Желтый цвет"/>
-  <RU Key = "Green"	Word = "Зеленый цвет"/>
+  <RU Key = "Red"	Word = "Красный"/>
+  <RU Key = "Blue"	Word = "Синий"/>
+  <RU Key = "Yellow"	Word = "Желтый"/>
+  <RU Key = "Green"	Word = "Зеленый"/>
   <RU Key = "HandLeft"	Word = "Левая рука"/>
   <RU Key = "HandRight"	Word = "Правая рука"/>
   <RU Key = "FootLeft"	Word = "Левая нога"/>

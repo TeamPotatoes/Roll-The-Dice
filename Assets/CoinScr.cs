@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
+using System.Collections;
 
 public class CoinScr : MonoBehaviour {
     private int finalnumber = 0; // результат броска 
@@ -11,12 +11,14 @@ public class CoinScr : MonoBehaviour {
     public Text TxtFlip;
     public Text TxtResult;
     public Text TxtBack;
-        
+    public Texture RusOrel;
+    public Texture RusReshka;
+
     void Start()
     {      
-        TxtFlip.text = LangManager.instance.GetWord("FlipCoin");
+       // TxtFlip.text = LangManager.instance.GetWord("FlipCoin");
         TxtResult.text = LangManager.instance.GetWord("Result");
-        TxtBack.text = LangManager.instance.GetWord("Back");
+       // TxtBack.text = LangManager.instance.GetWord("Back");
     }
     //Функции вызвываемые по клику мышки
     public void ClickFlip()
@@ -44,6 +46,7 @@ public class CoinScr : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         { ClickBack(); }
     }
+
     public void ClickBack()
     {SceneManager.LoadScene("MainMenu");}
 }
