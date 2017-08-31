@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SettingsScr : MonoBehaviour {
 
-    public GameObject ChangeToRu;
+  /*  public GameObject ChangeToRu;
     public GameObject ChangeToEn;
     private string CurrentLang;
 
@@ -13,10 +13,10 @@ public class SettingsScr : MonoBehaviour {
     public Text CoinButton;
     public Text TimersButton;
     public Text TwisterButton;
-
+    */
     void Start()
     {
-        if (CurrentLang == "EN")
+      /*  if (CurrentLang == "EN")
         {
             ChangeToRu.SetActive(true); ChangeToEn.SetActive(false);
         }
@@ -27,14 +27,14 @@ public class SettingsScr : MonoBehaviour {
         DiceButton.text = LangManager.instance.GetWord("Dice");
         CoinButton.text = LangManager.instance.GetWord("Coin");
         TimersButton.text = LangManager.instance.GetWord("Timers");
-        TwisterButton.text = LangManager.instance.GetWord("Twister");
+        TwisterButton.text = LangManager.instance.GetWord("Twister");*/
     }
     
 
    
     public void Changelang()
     {
-        if (CurrentLang == "EN")
+      /*  if (CurrentLang == "EN")
         {
             PlayerPrefs.SetString("SysLanguage", "RU");
             PlayerPrefs.Save();
@@ -56,13 +56,13 @@ public class SettingsScr : MonoBehaviour {
         DiceButton.text = LangManager.instance.GetWord("Dice");
         CoinButton.text = LangManager.instance.GetWord("Coin");
         TimersButton.text = LangManager.instance.GetWord("Timers");
-        TwisterButton.text = LangManager.instance.GetWord("Twister");
+        TwisterButton.text = LangManager.instance.GetWord("Twister");*/
     }
     
     
-    void FixedUpdate()
+    void OnTrigerEnter()
     {
-        CurrentLang = PlayerPrefs.GetString("SysLanguage", "");
+       /* CurrentLang = PlayerPrefs.GetString("SysLanguage", "");*/
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu");
