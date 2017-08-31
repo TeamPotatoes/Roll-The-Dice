@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.IO;
+using UnityEngine.UI;
+
 
 
 public class LangManager : MonoBehaviour {
 
-
+/*
     private static LangManager LangPrefab;
     public static LangManager instance = null;
     public string[] tags;
@@ -16,15 +18,22 @@ public class LangManager : MonoBehaviour {
     private string SysLang;
 
 
+
+    public Text DiceButton;
+    public Text CoinButton;
+    public Text TimersButton;
+    public Text TwisterButton;
+
+
     public string GetLang()
     {
         return lang;
         
     }
- /*   public void SetLang(string lan)
+    public void SetLang(string lan)
     {
         PlayerPrefs.SetString("SysLanguage", lan);
-    }*/
+    }
 
     private Dictionary<string, Dictionary<string, string>> languages;
     private XmlDocument xmlDoc = new XmlDocument();
@@ -98,6 +107,14 @@ public class LangManager : MonoBehaviour {
 
     void Update()
     {
+        DiceButton.text = LangManager.instance.GetWord("Dice");
+        CoinButton.text = LangManager.instance.GetWord("Coin");
+        TimersButton.text = LangManager.instance.GetWord("Timers");
+        TwisterButton.text = LangManager.instance.GetWord("Twister");
+
+
+
+
         lang = PlayerPrefs.GetString("SysLanguage");
         //для тряски
         LowPassFilter = AccelUpadateInterval / LowPassSec;
@@ -117,5 +134,5 @@ public class LangManager : MonoBehaviour {
     {
         return languages[lang][key];
     }
-
+    */
 }

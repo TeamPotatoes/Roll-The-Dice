@@ -26,8 +26,8 @@ public class DicesScr : MonoBehaviour {
 
     void Start()
     {      
-        TxtResult.text = LangManager.instance.GetWord("Result");
-        TxtChooseDice.text = LangManager.instance.GetWord("ChooseDice");
+       /* TxtResult.text = LangManager.instance.GetWord("Result");
+        TxtChooseDice.text = LangManager.instance.GetWord("ChooseDice");*/
     }
 
  
@@ -170,12 +170,12 @@ public class DicesScr : MonoBehaviour {
     }
     void Update()
     {
-        if (shakeOn)
+       /* if (shakeOn)
         { 
-            bool Delta1 = GameObject.Find("LangManager").GetComponent<LangManager>().ShakeIsOn;
+           bool Delta1 = GameObject.Find("LangManager").GetComponent<LangManager>().ShakeIsOn;
             if (Delta1 == true)
             { ClickRoll(); }
-        }
+        }*/
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("MainMenu");

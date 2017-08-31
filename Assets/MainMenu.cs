@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
-    public Text DiceButton;
+ /*   public Text DiceButton;
     public Text CoinButton;
     public Text TimersButton;
     public Text TwisterButton;
-
+    */
 
 
    /* void Start()
@@ -22,6 +22,7 @@ public class MainMenu : MonoBehaviour {
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
