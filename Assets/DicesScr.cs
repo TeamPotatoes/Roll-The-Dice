@@ -26,8 +26,7 @@ public class DicesScr : MonoBehaviour {
 
     void Start()
     {      
-       /* TxtResult.text = LangManager.instance.GetWord("Result");
-        TxtChooseDice.text = LangManager.instance.GetWord("ChooseDice");*/
+
     }
 
  
@@ -177,12 +176,8 @@ public class DicesScr : MonoBehaviour {
             { ClickRoll(); }
         }*/
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
+        {ClickBack();}
     }
     public void ClickBack()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }  
+        {SceneManager.LoadScene("MainMenu");}  
   }
