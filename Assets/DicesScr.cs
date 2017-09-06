@@ -4,16 +4,9 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 public class DicesScr : MonoBehaviour {    
-    private int finalnumber = 0; // результат броска
-    private int finalnumber2 = 0; // результат броска второго кубика если есть
-    private int finalnumber3 = 0;
-    private int finalnumber4 = 0;
-    private int finalnumber5 = 0;
-    private int totalnumber = 0; //результат сложения броска двух кубиков
     private int minnumber = 1; // минимальное значение на кубике
     private int maxnumber = 7; // максимальнеое значение на кубике
     private int numberofdices = 1;
-    private bool twodices = false; //определяем сколько кубиков бросать
     private bool showlist = false; //выводит полный список бросков
     private bool shakeOn = false;
     //текстовые поля, потом будут нужны при выборе языка
@@ -23,70 +16,28 @@ public class DicesScr : MonoBehaviour {
     public Text TxtChooseDice;
     public GameObject AllRollsList;
     private List<string> numberofthem = new List<string>(); //создаем лист который будет хранить значения бросков
+    private int[] finalnumbers = new int[5];
 
     void Start()
-    {      
-       /* TxtResult.text = LangManager.instance.GetWord("Result");
-        TxtChooseDice.text = LangManager.instance.GetWord("ChooseDice");*/
+    {     
     }
-
- 
+     
     public void ClickRoll() //бросок
-    {         
-        /*
-        if (twodices)
-        {finalnumber2 = Random.Range(minnumber, maxnumber);}
-        else { finalnumber2 = 0; }         
-        if (twodices == false) { TxtResult.text = "" + finalnumber; }
-        else if (twodices)
-        {TxtResult.text = "" + finalnumber + "+" + finalnumber2 + "=" + totalnumber;}
-        */
-        //ГОВЕНЫЙ КУСОК - НАДО ОПТИМИЗОРОВАТЬ ПОЛЮБЭ
-        switch (numberofdices) //определяем количество бросаемых кубиков
+    {
+        int totalnumber = 0;
+        TxtResult.text = "";
+        for (int i = 0; i < numberofdices; i++)
         {
-            case 1:
-                finalnumber = Random.Range(minnumber, maxnumber);
-                finalnumber2 = 0;
-                finalnumber3 = 0;
-                finalnumber4 = 0;
-                finalnumber5 = 0;
-                break;
-            case 2:
-                finalnumber = Random.Range(minnumber, maxnumber);
-                finalnumber2 = Random.Range(minnumber, maxnumber);
-                finalnumber3 = 0;
-                finalnumber4 = 0;
-                finalnumber5 = 0;
-                break;
-            case 3:
-                finalnumber = Random.Range(minnumber, maxnumber);
-                finalnumber2 = Random.Range(minnumber, maxnumber);
-                finalnumber3 = Random.Range(minnumber, maxnumber);
-                finalnumber4 = 0;
-                finalnumber5 = 0;
-                break;
-            case 4:
-                finalnumber = Random.Range(minnumber, maxnumber);
-                finalnumber2 = Random.Range(minnumber, maxnumber);
-                finalnumber3 = Random.Range(minnumber, maxnumber);
-                finalnumber4 = Random.Range(minnumber, maxnumber);
-                finalnumber5 = 0;
-                break;
-            case 5:
-                finalnumber = Random.Range(minnumber, maxnumber);
-                finalnumber2 = Random.Range(minnumber, maxnumber);
-                finalnumber3 = Random.Range(minnumber, maxnumber);
-                finalnumber4 = Random.Range(minnumber, maxnumber);
-                finalnumber5 = Random.Range(minnumber, maxnumber);
-                break;
-        }
-        totalnumber = finalnumber + finalnumber2 + finalnumber3 + finalnumber4 + finalnumber5;
-        TxtTotalResult.text = "" + totalnumber;
-        TxtResult.text = "" + finalnumber + "+" + finalnumber2+ "+" + finalnumber3 + "+" + finalnumber4 + "+" + finalnumber5;
+            finalnumbers[i] = Random.Range(minnumber, maxnumber);
+            totalnumber += finalnumbers[i];
+            TxtResult.text += "+" + finalnumbers[i];
+        }      
+        TxtTotalResult.text = "" + totalnumber; 
         numberofthem.Add(TxtResult.text.ToString()); //при клике добавляем полученый результат в лист бросков
         if (showlist) // если список всех бросков открыт, то прячем его при броске
         { ClickShowList(); }
-    }       
+    }      
+     
     public void ClickShowList() //выводит список всех бросков
     {               
         if (!showlist)
@@ -101,6 +52,7 @@ public class DicesScr : MonoBehaviour {
                 }
         } else {showlist = false; AllRollsList.SetActive(false);}       
     }
+
     public void ClickD4()
     {
         maxnumber = 5;
@@ -177,12 +129,8 @@ public class DicesScr : MonoBehaviour {
             { ClickRoll(); }
         }*/
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
+        {ClickBack();}
     }
     public void ClickBack()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }  
+        {SceneManager.LoadScene("MainMenu");}  
   }
