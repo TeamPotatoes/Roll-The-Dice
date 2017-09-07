@@ -15,6 +15,7 @@ public class DicesScr : MonoBehaviour {
     public Text TxtTotalResult;
     public Text TxtChooseDice;
     public GameObject AllRollsList;
+    public GameObject Picture_new;
     private List<string> numberofthem = new List<string>(); //создаем лист который будет хранить значения бросков
     private int[] finalnumbers = new int[5];
 
@@ -48,7 +49,7 @@ public class DicesScr : MonoBehaviour {
             TxtAllRolls.text = "";         
                 for (int i = 1; i < numberofthem.Count; i++)
                 {
-                    TxtAllRolls.text += numberofthem.Count - i + ". " + numberofthem[numberofthem.Count - i] + "\n";
+                    TxtAllRolls.text += numberofthem.Count - i + ")" + numberofthem[numberofthem.Count - i] + "\n";
                 }
         } else {showlist = false; AllRollsList.SetActive(false);}       
     }
@@ -117,6 +118,7 @@ public class DicesScr : MonoBehaviour {
     {
         if (shakeOn)
         {
+            //Picture_new.GetComponent<Renderer>().material.mainTexture = btn_shake_off;
             shakeOn = false;            
         } else {shakeOn = true;}
     }

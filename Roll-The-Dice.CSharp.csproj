@@ -81,7 +81,6 @@
     <Compile Include="Assets\CoinScr.cs" />
     <Compile Include="Assets\DicesScr.cs" />
     <Compile Include="Assets\MainMenu.cs" />
-    <Compile Include="Assets\SettingsScr.cs" />
     <Compile Include="Assets\TimerScr.cs" />
     <Compile Include="Assets\TwisterScr.cs" />
   </ItemGroup>
