@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/DiceScene.unity
+- path: Assets/CoinScene.unity
   isLoaded: 1
   isActive: 1

@@ -10,7 +10,9 @@ public class CoinScr : MonoBehaviour
     private int tailscount = 0;
     private int totalflips = 0;
     public Text TxtResult;
-    
+    public Sprite co_head; //спрайт ноги
+    public Sprite co_tail; //спрайт руки
+
     void Start()
     {
 
@@ -21,9 +23,17 @@ public class CoinScr : MonoBehaviour
     {
         finalnumber = Random.Range(1, 3);
         if (finalnumber == 1)
-            { TxtResult.text = "Head"; headscount += 1; }
+        {
+            TxtResult.text = "Head";
+            headscount += 1;
+            GetComponent<SpriteRenderer>().sprite = co_head;
+        }
         if (finalnumber == 2)
-            {TxtResult.text = "Tail"; tailscount += 1; }
+        {
+            TxtResult.text = "Tail";
+            tailscount += 1;
+            GetComponent<SpriteRenderer>().sprite = co_tail;
+        }
         totalflips += 1;
         float Headstotal = ((float)headscount / (float)totalflips) * 100; //фишка в том что int обращается в 0 при делении из-за того что нет определения занков после запятой
         float Tailstotal = ((float)tailscount / (float)totalflips) * 100;
